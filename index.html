@@ -16,10 +16,66 @@
  	
 	<link rel="stylesheet" href="css/html5reset-1.6.1.css" media="screen" />
 	<link rel="stylesheet" href="css/style.css" media="screen" />
-	
+
+	<script src="js/matchMedia.js"></script>
+	<script src="js/mootools-core-1.4.2-full-nocompat-yc.js" type="text/javascript"></script>
+	<script>
+		//if the current device support the 600px screen size
+		if (matchMedia('screen and (min-width: 600px)').matches) {
+			//instatiate a var for next use
+			var extraArticleElement = null;
+			//when the DOM is ready
+			window.addEvent('domready', function(){
+					//generate a new HTML request to the page index-info.html
+					new Request.HTML({
+						url: 'index-info.html',
+						method: 'get',
+						onSuccess: function(responseText, responseXML) {
+							//when the page is loaded then fire an event, everthing is ready
+							window.fireEvent('extraInfoReady', responseXML);
+						}
+					}).get();
+			});
+			//create an event used when the extra info html page has been loaded
+			window.addEvent('extraInfoReady', function(extraInfos) {
+				//if there's something
+				if (extraInfos!==undefined) {
+					//capture all the <article> elements
+					extraInfos = extraInfos.getElements('article');
+					//create a <section> element to host dinamically the articles
+					var nav = document.getElement('nav');
+					var section = new Element('section');
+					var article = new Element('article');
+					section.inject(nav, 'after');
+					article.inject(section);
+					extraArticleElement = article;
+					var navEls = nav.getElements('li');
+					//for each of them add events for mouseover and touch
+					Array.each(navEls, function(navItem, index) {
+						navItem.addEvent('mouseover', function(ev){
+							showExtraInfo(this[0], this[1]);
+						}.bind([navItem, extraInfos[index]]));
+						navItem.addEvent('touchmove', function(ev){
+							ev.preventDefault();
+							showExtraInfo(this[0], this[1]);
+						}.bind([navItem, extraInfos[index]]));
+					});
+				}
+			});
+			var showExtraInfo = function(nav, extra) {
+				var oldNav = document.getElement('.nav-active');
+				if (oldNav != nav) {
+					if (oldNav !=null) { oldNav.removeClass('nav-active'); }
+					nav.addClass('nav-active');
+					extraArticleElement.empty();
+					extra.inject(extraArticleElement);
+					extra.getElement('a.go').set('href', nav.getElement('a').get('href'));
+				}
+			};
+		}
+	</script>
 </head>
 <body>
-
 <header>
 	<h1><span>E</span>ntando</h1>
 	<p>The Agile next generation Open Source portal</p>
@@ -33,15 +89,15 @@
 		<li><a href="http://www.entando.com/">Entando.com</a></li>
 	</ul>
 </nav>
-
-<!-- Insert me once passed 600px
-<section id="main">
-	<article>
-		<h1>A Title</h1>
-		<p>Lorem ipsum</p>
-		<p><a href="">GO!</a></p>
-	</article>
-</section>
+<!-- 
+	Insert me once passed 600px
+	<section id="main">
+		<article>
+			<h1>A Title</h1>
+			<p>Lorem ipsum</p>
+			<p><a href="">GO!</a></p>
+		</article>
+	</section>
 -->
 
 <footer>
