@@ -54,7 +54,7 @@
 							Array.each(navEls, function(navItem, index) {
 								navItem.getElements("a").addEvent("click", function(ev) { ev.preventDefault(); });
 								navItem.addEvent('click', function(ev){
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa.ev.preventDefault();
+									ev.preventDefault();
 									showExtraInfo(this[0], this[1]);
 								}.bind([navItem, extraInfos[index]]));
 							});
