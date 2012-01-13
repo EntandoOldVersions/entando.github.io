@@ -18,61 +18,92 @@
 	<link rel="stylesheet" href="css/style.css" media="screen" />
 
 	<script src="js/matchMedia.js"></script>
-	<script src="js/mootools-core-1.4.2-full-nocompat-yc.js" type="text/javascript"></script>
+	<script src="js/mootools-core-1.4.2-full-nocompat-yc.js"></script>
 	<script>
 		//if the current device support the 600px screen size
-		if (matchMedia('screen and (min-width: 600px)').matches) {
-			//instatiate a var for next use
-			var extraArticleElement = null;
-			//when the DOM is ready
-			window.addEvent('domready', function(){
+		var extraSectionElement = null;
+		var r = new Request.HTML({
+			url: 'index-info.html',
+			method: 'get',
+			onSuccess: function(responseText, responseXML) {
+				//when the page is loaded then fire the event;
+				window.fireEvent('extraInfoReady', responseXML);
+			}
+		});
+		var loadExtraInfos = function() {
+			window.removeEvents('extraInfoReady');
+			if (matchMedia('screen and (min-width: 600px)').matches) {
+				if (extraSectionElement == null) {
 					//generate a new HTML request to the page index-info.html
-					new Request.HTML({
-						url: 'index-info.html',
-						method: 'get',
-						onSuccess: function(responseText, responseXML) {
-							//when the page is loaded then fire an event, everthing is ready
-							window.fireEvent('extraInfoReady', responseXML);
+					r.get();
+					//create an event used when the extra info html page has been loaded
+					window.addEvent('extraInfoReady', function(extraInfos) {
+						//if there's something
+						if (extraInfos!==undefined) {
+							//capture all the <article> elements
+							extraInfos = extraInfos.getElements('article');
+							//create a <section> element to host dinamically the articles
+							var nav = document.getElement('nav');
+							var section = new Element('section');
+							var article = new Element('article');
+							section.inject(nav, 'after');
+							article.inject(section);
+							extraSectionElement = section;
+							var navEls = nav.getElements('li');
+							//for each of them add events for mouseover and touch
+							Array.each(navEls, function(navItem, index) {
+								navItem.getElements("a").addEvent("click", function(ev) { ev.preventDefault(); });
+								navItem.addEvent('click', function(ev){
+									ev.preventDefault();
+									showExtraInfo(this[0], this[1]);
+								}.bind([navItem, extraInfos[index]]));
+								/*
+				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa.				navItem.addEvent('mouseover', function(ev){
+									showExtraInfo(this[0], this[1]);
+								}.bind([navItem, extraInfos[index]]));
+								*/
+								/*
+								navItem.addEvent('touchmove', function(ev){
+									ev.preventDefault();
+									showExtraInfo(this[0], this[1]);
+								}.bind([navItem, extraInfos[index]]));
+								*/
+							});
 						}
-					}).get();
-			});
-			//create an event used when the extra info html page has been loaded
-			window.addEvent('extraInfoReady', function(extraInfos) {
-				//if there's something
-				if (extraInfos!==undefined) {
-					//capture all the <article> elements
-					extraInfos = extraInfos.getElements('article');
-					//create a <section> element to host dinamically the articles
-					var nav = document.getElement('nav');
-					var section = new Element('section');
-					var article = new Element('article');
-					section.inject(nav, 'after');
-					article.inject(section);
-					extraArticleElement = article;
-					var navEls = nav.getElements('li');
-					//for each of them add events for mouseover and touch
-					Array.each(navEls, function(navItem, index) {
-						navItem.addEvent('mouseover', function(ev){
-							showExtraInfo(this[0], this[1]);
-						}.bind([navItem, extraInfos[index]]));
-						navItem.addEvent('touchmove', function(ev){
-							ev.preventDefault();
-							showExtraInfo(this[0], this[1]);
-						}.bind([navItem, extraInfos[index]]));
 					});
+					var showExtraInfo = function(nav, extra) {
+						var oldNav = document.getElement('.nav-active');
+						if (oldNav != nav) {
+							if (oldNav !=null) { oldNav.removeClass('nav-active'); }
+							nav.addClass('nav-active');
+							extraSectionElement.empty();
+							extra.inject(extraSectionElement);
+							extra.getElement('a.go').set('href', nav.getElement('a').get('href'));
+						}
+					};
 				}
-			});
-			var showExtraInfo = function(nav, extra) {
-				var oldNav = document.getElement('.nav-active');
-				if (oldNav != nav) {
-					if (oldNav !=null) { oldNav.removeClass('nav-active'); }
-					nav.addClass('nav-active');
-					extraArticleElement.empty();
-					extra.inject(extraArticleElement);
-					extra.getElement('a.go').set('href', nav.getElement('a').get('href'));
+			}
+			else {
+				if (extraSectionElement != null) {
+					window.removeEvents('extraInfoReady');
+					var section = document.getElement("section");
+					if (section != null) section.destroy();
+					var nav = document.getElement('nav');
+					var navEls = nav.getElements('li');
+					Array.each(navEls, function(navItem, index) {
+							navItem.getElements("a").removeEvents('click');
+							navItem.removeEvents('click');
+							navItem.removeEvents('mouseover');
+							navItem.removeEvents('touchmove');
+							var oldNav = document.getElement('.nav-active');
+							if (oldNav !=null) { oldNav.removeClass('nav-active'); }
+						});
+					extraSectionElement = null;
 				}
-			};
-		}
+			}
+		};
+		window.addEvent('domready', loadExtraInfos);
+		window.addEvent('resize', loadExtraInfos);
 	</script>
 </head>
 <body>

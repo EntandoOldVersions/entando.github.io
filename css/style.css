@@ -245,4 +245,15 @@ a:focus {
 		color: rgba(56, 56, 56, 1);
 	}	
 
+	/***/
+		section {
+			width: 40%;
+			display: inline-block;
+			text-align: right;
+		}
+		nav {
+			display: inline-block;
+		}
+	/***/
+
 }
