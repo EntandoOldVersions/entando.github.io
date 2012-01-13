@@ -231,8 +231,18 @@ a:focus {
 
 	nav li a:link,
 	nav li a:visited {
-		color: rgba(56, 56, 56, 1);
-		text-shadow: -0.0625em 0 0 rgba(255, 255, 255, 0.8);
+		color: rgba(56, 56, 56, 0.7);
+		text-shadow: none;
+		-webkit-transition: color 200ms ease-in-out;
+		-moz-transition: color 200ms ease-in-out;
+		-o-transition: color 200ms ease-in-out;
+		transition: color 200ms ease-in-out;			
 	}
+
+	nav li a:hover,
+	nav li a:active,
+	nav li a:active {
+		color: rgba(56, 56, 56, 1);
+	}	
 
 }
