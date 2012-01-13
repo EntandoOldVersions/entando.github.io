@@ -54,20 +54,9 @@
 							Array.each(navEls, function(navItem, index) {
 								navItem.getElements("a").addEvent("click", function(ev) { ev.preventDefault(); });
 								navItem.addEvent('click', function(ev){
-									ev.preventDefault();
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa.ev.preventDefault();
 									showExtraInfo(this[0], this[1]);
 								}.bind([navItem, extraInfos[index]]));
-								/*
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa.				navItem.addEvent('mouseover', function(ev){
-									showExtraInfo(this[0], this[1]);
-								}.bind([navItem, extraInfos[index]]));
-								*/
-								/*
-								navItem.addEvent('touchmove', function(ev){
-									ev.preventDefault();
-									showExtraInfo(this[0], this[1]);
-								}.bind([navItem, extraInfos[index]]));
-								*/
 							});
 						}
 					});
@@ -91,13 +80,13 @@
 					var nav = document.getElement('nav');
 					var navEls = nav.getElements('li');
 					Array.each(navEls, function(navItem, index) {
-							navItem.getElements("a").removeEvents('click');
-							navItem.removeEvents('click');
-							navItem.removeEvents('mouseover');
-							navItem.removeEvents('touchmove');
-							var oldNav = document.getElement('.nav-active');
-							if (oldNav !=null) { oldNav.removeClass('nav-active'); }
-						});
+						navItem.getElements("a").removeEvents('click');
+						navItem.removeEvents('click');
+						navItem.removeEvents('mouseover');
+						navItem.removeEvents('touchmove');
+						var oldNav = document.getElement('.nav-active');
+						if (oldNav !=null) { oldNav.removeClass('nav-active'); }
+					});
 					extraSectionElement = null;
 				}
 			}
