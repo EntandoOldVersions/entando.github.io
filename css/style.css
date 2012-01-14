@@ -275,6 +275,38 @@ a:focus {
 		margin-top: 1em;
 	}
 
+	.js p.extraTip {
+		font-family: "Lobster Two", "Arial", sans-serif;
+		color: rgba(80, 80, 80, 0.4);
+		text-shadow: 0 -1px 0 rgba(10, 10, 10, 1);
+		margin: 0.3em 0;
+		padding: 0;
+		font-size: 4em;
+		width: 80%;
+		display: inline-block;
+		-moz-transform: rotate(-10deg);
+		-webkit-transform: rotate(-10deg);
+		-o-transform: rotate(-10deg);
+		-ms-transform: rotate(-10deg);
+		transform: rotate(-10deg);
+		position: relative;
+	}
+
+	.js p.extraTip::before {
+		content: "{";
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin-left: -0.35em;
+		margin-top: -0.35em;
+		font-size: 3em;
+		-moz-transform: rotate(10deg);
+		-webkit-transform: rotate(10deg);
+		-o-transform: rotate(10deg);
+		-ms-transform: rotate(10deg);
+		transform: rotate(10deg);		
+	}
+
 	article h1 {
 		font-size: 1.4em;
 		font-family: "Droid Sans", "Arial", sans-serif;
