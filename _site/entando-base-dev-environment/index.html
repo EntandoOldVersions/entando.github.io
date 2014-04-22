@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="/img/favicon.png">
+
+  <title>Cover Template for Bootstrap</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/lumen/bootstrap.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/syntax.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.1/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    </head>
+
+    <body>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+          <p>
+  <a href="/">
+    <span class="fa fa-arrow-circle-o-left fa-fw"></span>&#32;
+    Back to entando.github.io
+  </a>
+</p>
+
+<h1 id="install_a_base_environment_for_entando">Install a base environment for Entando</h1>
+
+<h2 id="os_x_109">OS X 10.9</h2>
+
+<ul>
+<li>Install <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java JDK 7</a></li>
+
+<li>set the JAVA_HOME environment variable:</li>
+</ul>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span><span class='nb'>echo</span> <span class='s2'>&quot;export JAVA_HOME=\`/usr/libexec/java_home\`&quot;</span> <span class='p'>|</span> tee -a ~/.bash_profile
+</code></pre></div>
+<ul>
+<li>Install XCode from the App Store</li>
+
+<li>Install <a href="http://brew.sh/">Homebrew</a></li>
+
+<li>Run brew doctor and fix any warning you get from it</li>
+
+<li>Install Maven and Ant:</li>
+</ul>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>brew install maven
+<span class='nv'>$ </span>brew install ant
+</code></pre></div>
+<h2 id="ubuntu_linux"> Ubuntu Linux</h2>
+
+<ul>
+<li>Install Maven and Ant:</li>
+</ul>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>sudo apt-get install maven ant
+</code></pre></div>
+<ul>
+<li>set the JAVA_HOME environment variable:</li>
+</ul>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span><span class='nb'>echo</span> <span class='s2'>&quot;JAVA_HOME=\&quot;/usr/lib/jvm/default-java\&quot;&quot;</span> <span class='p'>|</span> sudo tee -a /etc/environment
+</code></pre></div>
+<ul>
+<li>Reboot</li>
+</ul>
+
+<h2 id="windows">Windows</h2>
+
+<ul>
+<li>Install <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java JDK 7</a></li>
+
+<li>Install <a href="http://maven.apache.org/download.cgi">Maven</a></li>
+
+<li>Install <a href="http://ant.apache.org/bindownload.cgi">Ant</a></li>
+</ul>
+
+<h2 id="final_check_for_all_the_oses">Final check for all the OSes</h2>
+
+<ul>
+<li>Generate a test web application typing bogus data when asked:</li>
+</ul>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>mvn archetype:generate -Dfilter<span class='o'>=</span>entando-archetype-portal-bootstrap
+</code></pre></div>
+<ul>
+<li>Enter the newly created folder</li>
+
+<li>Launch Jetty:</li>
+</ul>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>mvn clean jetty:run
+</code></pre></div>
+<ul>
+<li>Open your browser at <a href="http://localhost:8080/">http://localhost:8080/</a> and ignore the 404 error</li>
+
+<li>Click on the only link you’ll find on that page</li>
+</ul>
+
+<p>
+  <a href="/">
+    <span class="fa fa-arrow-circle-o-left fa-fw"></span>&#32;
+    Back to entando.github.io
+  </a>
+</p>
+          </div>
+        </div>
+
+        <footer class="row">
+          <p class="col-md-8 col-md-offset-2 text-center">
+            <small><a href="http://www.entando.com/">Entando.com</a></small>
+          </p>
+        </footer>
+      </div>
+
+  </body>
+  </html>

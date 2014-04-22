@@ -1,140 +1,25 @@
-<!DOCTYPE HTML>
-<html lang="en" class="no-js">
-<head>
-	<meta charset="utf-8" />
+---
+layout: default
+---
 
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<h1>First steps with Entando</h1>
+<p>All you need to start simplifying your enterprise workflow.</p>
 
-	<title>Home - Entando.org</title>
-
-	<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1 user-scalable=no,width = 320" />
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="default" />	
-	
- 	<link href="http://fonts.googleapis.com/css?family=Comfortaa:300,400,700|Righteous|Droid+Sans:400,700|Lobster+Two:400,700italic" rel="stylesheet" type="text/css">
- 	
-	<link rel="stylesheet" href="css/html5reset-1.6.1.css" media="screen" />
-	<link rel="stylesheet" href="css/style.css" media="screen" />
-
-	<script src="js/modernizr.custom.87255.js"></script>
-	<script src="js/mootools-core-1.4.2-full-nocompat-yc.js"></script>
-	<script>
-		//if the current device support the 600px screen size
-		var extraSectionElement = null;
-		var r = new Request.HTML({
-			url: 'index-info.html',
-			method: 'get',
-			onSuccess: function(responseText, responseXML) {
-				//when the page is loaded then fire the event;
-				window.fireEvent('extraInfoReady', responseXML);
-			}
-		});
-		var loadExtraInfos = function() {
-			window.removeEvents('extraInfoReady');
-			if (matchMedia('screen and (min-width: 600px)').matches) {
-				if (extraSectionElement == null) {
-					//generate a new HTML request to the page index-info.html
-					r.get();
-					//create an event used when the extra info html page has been loaded
-					window.addEvent('extraInfoReady', function(extraInfos) {
-						//if there's something
-						if (extraInfos!==undefined) {
-							//capture all the <article> elements
-							var extraTipH1 = extraInfos.getElement('h1');
-							extraInfos.getElement('header').destroy();
-							var extraTip = new Element('p');
-							extraTip.set('text', extraTipH1.get('text'));
-							extraTip.set('class', extraTipH1.get('class'));
-							extraTipH1.destroy();
-							extraInfos = extraInfos.getElements('article');
-							//create a <section> element to host dinamically the articles
-							var nav = document.getElement('nav');
-							var section = new Element('section');
-							var article = new Element('article');
-							extraTip.inject(article);
-							section.inject(nav, 'after');
-							article.inject(section);
-							extraSectionElement = section;
-							var navEls = nav.getElements('li');
-							//for each of them add events for mouseover and touch
-							Array.each(navEls, function(navItem, index) {
-								navItem.getElements("a").addEvent("click", function(ev) { ev.preventDefault(); });
-								navItem.addEvent('click', function(ev){
-									ev.preventDefault();
-									extraTip.destroy();
-									showExtraInfo(this[0], this[1]);
-								}.bind([navItem, extraInfos[index]]));
-							});
-						}
-					});
-					var showExtraInfo = function(nav, extra) {
-						var oldNav = document.getElement('.nav-active');
-						if (oldNav != nav) {
-							if (oldNav !=null) { oldNav.removeClass('nav-active'); }
-							nav.addClass('nav-active');
-							extraSectionElement.empty();
-							extra.inject(extraSectionElement);
-							extra.getElement('a.go').set('href', nav.getElement('a').get('href'));
-						}
-					};
-				}
-			}
-			else {
-				if (extraSectionElement != null) {
-					window.removeEvents('extraInfoReady');
-					var section = document.getElement("section");
-					if (section != null) section.destroy();
-					var nav = document.getElement('nav');
-					var navEls = nav.getElements('li');
-					Array.each(navEls, function(navItem, index) {
-						navItem.getElements("a").removeEvents('click');
-						navItem.removeEvents('click');
-						navItem.removeEvents('mouseover');
-						navItem.removeEvents('touchmove');
-						var oldNav = document.getElement('.nav-active');
-						if (oldNav !=null) { oldNav.removeClass('nav-active'); }
-					});
-					extraSectionElement = null;
-				}
-			}
-		};
-		window.addEvent('domready', loadExtraInfos);
-		window.addEvent('resize', loadExtraInfos);
-	</script>
-	<script type="text/javascript">
-
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-17222082-6']);
-		_gaq.push(['_setDomainName', 'entando.org']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-
-	</script>
-</head>
-<body>
-<header>
-	<h1><span>E</span>ntando</h1>
-	<p>The Agile next generation Open Source portal</p>
-</header>
-<nav>
-	<ul>
-		<li><a href="https://github.com/entando/">Source code</a></li>
-		<li><a href="https://github.com/downloads/entando/entando-demo/Entando_entando-demo-standalone_3.0.0.zip">Download the Demo</a></li>
-		<li><a href="http://search.maven.org/#search%7Cga%7C1%7Centando/">Use with Maven</a></li>
-		<li><a href="http://www.entando.com/portal/pages/en/homepage/blog/">Official Blog</a></li>
-		<li><a href="http://groups.google.com/group/entando/">Official Forum</a></li>
-	</ul>
-</nav>
-<footer>
-	<p>Copyright &copy; 2012 Entando Srl</p>
-	<p class="dotcom"><a href="http://www.entando.com/">www.entando.com</a></p>	
-</footer>
-
-</body>
-</html>
+<div class="list-group">
+	<a href="{% post_url 2014-04-22-entando-base-dev-environment %}" class="list-group-item">
+		<span class="fa fa-wrench fa-fw"></span>&#32;
+		Install a base development environment for Entando
+	</a>
+	<a href="/edo" class="list-group-item">
+		<span class="fa fa-code fa-fw"></span>&#32;
+		Edo: Ninja code generator tool
+	</a>
+	<a href="{% post_url 2014-04-22-build-a-website-with-entando %}" class="list-group-item">
+		<span class="fa fa-sitemap fa-fw"></span>&#32;
+		Step 1: Build a website
+	</a>
+	<a href="{% post_url 2014-04-22-build-a-web-application-with-entando %}" class="list-group-item">
+		<span class="fa fa-gears fa-fw"></span>&#32;
+		Step 2: Build a web application
+	</a>
+</div>
