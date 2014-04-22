@@ -34,31 +34,38 @@
   </a>
 </p>
 
-<h1 id="build_a_website_with_entando">Build a website with Entando</h1>
+<h1 id="build-a-website-with-entando">Build a website with Entando</h1>
 
 <h2 id="preparations">Preparations</h2>
 
 <h3 id="intro">Intro</h3>
-
-<p>Hello, William Ghelfi here.</p>
+<p>Hello, William Ghelfi here. </p>
 
 <p>I serve as R&amp;D Director at Entando, and you can find me on <a href="http://github.com/trumbitta">GitHub</a> or <a href="http://twitter.com/trumbitta">Twitter</a>.</p>
 
 <p>So you heard about Entando and thought:</p>
 
 <blockquote>
-<p>Finally an enterprise portal platform which is at the same time powerful, extensible, and not [Liferay|Oracle Portal|WebSphere]-difficult to use!</p>
+  <table>
+    <tbody>
+      <tr>
+        <td>Finally an enterprise portal platform which is at the same time powerful, extensible, and not [Liferay</td>
+        <td>Oracle Portal</td>
+        <td>WebSphere]-difficult to use!</td>
+      </tr>
+    </tbody>
+  </table>
 </blockquote>
 
 <p>But then you looked left, and then you looked right, and then you looked around and thought:</p>
 
 <blockquote>
-<p>Right. How am I supposed to use Entando to get my new shiny portal up and running, <strong>exactly</strong>?</p>
+  <p>Right. How am I supposed to use Entando to get my new shiny portal up and running, <strong>exactly</strong>?</p>
 </blockquote>
 
 <p>Hey! That’s <strong>exactly</strong> the reason why I’m writing this guide for you to enjoy!</p>
 
-<h3 id="get_this_party_started">Get this party started</h3>
+<h3 id="get-this-party-started">Get this party started</h3>
 
 <p>Also known as <em>prerequisites</em>.</p>
 
@@ -66,7 +73,8 @@
 
 <p>We will be using Entando 4, which comes with an awesome lot of improvements we’ll take advantage of.</p>
 
-<p>Also, let me suggest you not to skim through this guide like a squirrel looking for acorns. Take your time, read carefully, relax, and enjoy the ride.<br />There’s nothing really difficult on the road ahead.</p>
+<p>Also, let me suggest you not to skim through this guide like a squirrel looking for acorns. Take your time, read carefully, relax, and enjoy the ride.<br />
+There’s nothing really difficult on the road ahead.</p>
 
 <p>If you didn’t stumble across the mini-guide about setting up a development environment for Entando, this is the perfect time for going through it and <a href="/entando-base-dev-environment">prepare your environment</a>.</p>
 
@@ -74,28 +82,36 @@
 
 <p>I use <a href="http://www.sublimetext.com/">Sublime Text</a> and <a href="http://eclipse.org/">Eclipse</a>, while the lead developer of Entando - <a href="http://github.com/eugeniosant">Eugenio Santoboni</a> - prefers <a href="http://netbeans.org/">Netbeans</a>.</p>
 
-<h2 id="from_the_archetype_comes_life">From the archetype comes life</h2>
+<h2 id="from-the-archetype-comes-life">From the archetype comes life</h2>
 
 <p>Here we go. Find a comfortable spot in the filesystem, like:</p>
-<div class='highlight'><pre><code class='bash'>mkdir ~/entando/ <span class='o'>&amp;&amp;</span> <span class='nb'>cd</span> ~/entando
+
+<div class="highlight"><pre><code class="bash">mkdir ~/entando/ <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/entando
 </code></pre></div>
+
 <p>And create your new, barebones, portal bundled with the awesome <a href="http://getbootstrap.com">Bootstrap</a>, version 2:</p>
-<div class='highlight'><pre><code class='bash'>mvn archetype:generate -Dfilter<span class='o'>=</span>entando
+
+<div class="highlight"><pre><code class="bash">mvn archetype:generate -Dfilter<span class="o">=</span>entando
 </code></pre></div>
+
 <p>If this is the first time you use Maven, <em>it’s important that you stop reading right now and go read an <a href="http://maven.apache.org/guides/getting-started/index.html">intro to Maven</a></em>.</p>
 
 <p>Maven will ask you the good ‘ole questions, to which you’ll answer like so:</p>
-<div class='highlight'><pre><code class='bash'>Choose archetype:
-1: remote -&gt; org.entando.entando:entando-archetype-portal-bootstrap <span class='o'>(</span>Twitter Bootstrap Portal Archetype <span class='k'>for </span>Entando: an agile, modern and user-centric open <span class='nb'>source </span>portal-like platform.<span class='o'>)</span>
-2: remote -&gt; org.entando.entando:entando-archetype-plugin-generic <span class='o'>(</span>Generic Plugin Archetype <span class='k'>for </span>Entando: an agile, modern and user-centric open <span class='nb'>source </span>Portal platform.<span class='o'>)</span>
-3: remote -&gt; org.entando.entando:entando-archetype-portal-generic <span class='o'>(</span>Generic Portal Archetype <span class='k'>for </span>Entando: an agile, modern and user-centric open <span class='nb'>source </span>portal-like platform.<span class='o'>)</span>
-Choose a number or apply filter <span class='o'>(</span>format: <span class='o'>[</span>groupId:<span class='o'>]</span>artifactId, <span class='k'>case </span>sensitive contains<span class='o'>)</span>: :
+
+<div class="highlight"><pre><code class="bash">Choose archetype:
+1: remote -&gt; org.entando.entando:entando-archetype-portal-bootstrap <span class="o">(</span>Twitter Bootstrap Portal Archetype <span class="k">for </span>Entando: an agile, modern and user-centric open <span class="nb">source </span>portal-like platform.<span class="o">)</span>
+2: remote -&gt; org.entando.entando:entando-archetype-plugin-generic <span class="o">(</span>Generic Plugin Archetype <span class="k">for </span>Entando: an agile, modern and user-centric open <span class="nb">source </span>Portal platform.<span class="o">)</span>
+3: remote -&gt; org.entando.entando:entando-archetype-portal-generic <span class="o">(</span>Generic Portal Archetype <span class="k">for </span>Entando: an agile, modern and user-centric open <span class="nb">source </span>portal-like platform.<span class="o">)</span>
+Choose a number or apply filter <span class="o">(</span>format: <span class="o">[</span>groupId:<span class="o">]</span>artifactId, <span class="k">case </span>sensitive contains<span class="o">)</span>: :
 </code></pre></div>
-<p>Choose 1 or <strong>whatever number points to org.entando.entando:entando-archetype-portal-bootstrap</strong>.<br />Then choose version 4.0.0, and go on like so:</p>
-<div class='highlight'><pre><code class='bash'>Define value <span class='k'>for </span>property <span class='s1'>&#39;groupId&#39;</span>: : com.mydomain
-Define value <span class='k'>for </span>property <span class='s1'>&#39;artifactId&#39;</span>: : myportal
-Define value <span class='k'>for </span>property <span class='s1'>&#39;version&#39;</span>: 1.0-SNAPSHOT:
-Define value <span class='k'>for </span>property <span class='s1'>&#39;package&#39;</span>: com.mydomain:
+
+<p>Choose 1 or <strong>whatever number points to org.entando.entando:entando-archetype-portal-bootstrap</strong>.<br />
+Then choose version 4.0.0, and go on like so:</p>
+
+<div class="highlight"><pre><code class="bash">Define value <span class="k">for </span>property <span class="s1">&#39;groupId&#39;</span>: : com.mydomain
+Define value <span class="k">for </span>property <span class="s1">&#39;artifactId&#39;</span>: : myportal
+Define value <span class="k">for </span>property <span class="s1">&#39;version&#39;</span>: 1.0-SNAPSHOT:
+Define value <span class="k">for </span>property <span class="s1">&#39;package&#39;</span>: com.mydomain:
 Confirm properties configuration:
 groupId: com.mydomain
 artifactId: myportal
@@ -103,28 +119,38 @@ version: 1.0-SNAPSHOT
 package: com.mydomain
 Y:
 </code></pre></div>
+
 <p>Now enter the root directory of <code>myportal</code>:</p>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd </span>myportal
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd </span>myportal
 </code></pre></div>
+
 <p>Cool. Let’s see if it worked.</p>
 
 <ol>
-<li>Start Entando:</li>
+  <li>Start Entando:  </li>
 </ol>
-<div class='highlight'><pre><code class='bash'>mvn clean jetty:run
+
+<div class="highlight"><pre><code class="bash">mvn clean jetty:run
 </code></pre></div>
+
 <ol>
-<li>Lean back and relax until you see these ending log lines by Jetty:</li>
+  <li>Lean back and relax until you see these ending log lines by Jetty:  </li>
 </ol>
-<div class='highlight'><pre><code class='bash'><span class='o'>[</span>INFO<span class='o'>]</span> Started Jetty Server
-<span class='o'>[</span>INFO<span class='o'>]</span> Starting scanner at interval of 5 seconds.
+
+<div class="highlight"><pre><code class="bash"><span class="o">[</span>INFO<span class="o">]</span> Started Jetty Server
+<span class="o">[</span>INFO<span class="o">]</span> Starting scanner at interval of 5 seconds.
 </code></pre></div>
-<p>Those two lines mean that Entando is up and running and Jetty is now ready to accept connections.<br />That is, point your web browser to <a href="http://localhost:8080/myportal">http://localhost:8080/myportal</a> and behold the mostly empty placeholder page, stating that <strong>It Worked!</strong>.</p>
+
+<p>Those two lines mean that Entando is up and running and Jetty is now ready to accept connections.<br />
+That is, point your web browser to <a href="http://localhost:8080/myportal">http://localhost:8080/myportal</a> and behold the mostly empty placeholder page, stating that <strong>It Worked!</strong>.</p>
 
 <p>So we are now ready to move on to the next checkpoint; but first be sure to stop Jetty:</p>
-<div class='highlight'><pre><code class='bash'>CTRL C
+
+<div class="highlight"><pre><code class="bash">CTRL C
 </code></pre></div>
-<h2 id="decide_and_compose">Decide and compose</h2>
+
+<h2 id="decide-and-compose">Decide and compose</h2>
 
 <p><code>entando-archetype-portal-bootstrap</code> comes with a handy Page Bundle, some Widget Bundles, and a Content Bundle.</p>
 
@@ -147,13 +173,15 @@ Y:
 <p>Ok, so you thought about it and are almost sure that Generic Content won’t be enough for <code>myportal</code> because - hey - everybody likes News!</p>
 
 <p>Open <code>pom.xml</code>, locate the very top of the <code>dependencies</code> section and insert this XML snippet:</p>
-<div class='highlight'><pre><code class='xml'><span class='nt'>&lt;dependency&gt;</span>
-  <span class='nt'>&lt;groupId&gt;</span>org.entando.entando.bundles.contents<span class='nt'>&lt;/groupId&gt;</span>
-  <span class='nt'>&lt;artifactId&gt;</span>entando-content-news<span class='nt'>&lt;/artifactId&gt;</span>
-  <span class='nt'>&lt;version&gt;</span>${entando.version}<span class='nt'>&lt;/version&gt;</span>
-  <span class='nt'>&lt;type&gt;</span>war<span class='nt'>&lt;/type&gt;</span>
-<span class='nt'>&lt;/dependency&gt;</span>
+
+<div class="highlight"><pre><code class="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.entando.entando.bundles.contents<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>entando-content-news<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${entando.version}<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;type&gt;</span>war<span class="nt">&lt;/type&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div>
+
 <h3 id="pages">Pages</h3>
 
 <p>During its first run, the freshly generated <code>myportal</code> has already activated the awesome and flexible <code>entando-page-bootstrap-hero</code> Page Model which is loosely based on the famous <a href="http://getbootstrap.com/2.3.2/examples/hero.html">Hero Unit example from Twitter Bootstrap</a>.</p>
@@ -161,117 +189,129 @@ Y:
 <p>Sure enough, you could argue that adding a slightly different Page Model with its default Widgets would be useful.</p>
 
 <p>So add the proper XML snippet to the <code>pom.xml</code>, maybe just near <code>entando-page-bootstrap-hero</code> for increased order, like this:</p>
-<div class='highlight'><pre><code class='xml'><span class='c'>&lt;!--</span>
-<span class='c'>    This one is already in the pom.xml and it&#39;s here in this XML snippet</span>
-<span class='c'>    just to show you a good place where to put the next one</span>
-<span class='c'>--&gt;</span>
-<span class='nt'>&lt;dependency&gt;</span>
-  <span class='nt'>&lt;groupId&gt;</span>org.entando.entando.bundles.pages<span class='nt'>&lt;/groupId&gt;</span>
-  <span class='nt'>&lt;artifactId&gt;</span>entando-page-bootstrap-hero<span class='nt'>&lt;/artifactId&gt;</span>
-  <span class='nt'>&lt;version&gt;</span>${entando.version}<span class='nt'>&lt;/version&gt;</span>
-  <span class='nt'>&lt;type&gt;</span>war<span class='nt'>&lt;/type&gt;</span>
-<span class='nt'>&lt;/dependency&gt;</span>
 
-<span class='c'>&lt;!--</span>
-<span class='c'>    This is the NEW Page Bundle, and the ONLY one you actually are</span>
-<span class='c'>    supposed to add to myportal right now</span>
-<span class='c'>--&gt;</span>
-<span class='nt'>&lt;dependency&gt;</span>
-  <span class='nt'>&lt;groupId&gt;</span>org.entando.entando.bundles.pages<span class='nt'>&lt;/groupId&gt;</span>
-  <span class='nt'>&lt;artifactId&gt;</span>entando-page-2columns-left<span class='nt'>&lt;/artifactId&gt;</span>
-  <span class='nt'>&lt;version&gt;</span>${entando.version}<span class='nt'>&lt;/version&gt;</span>
-  <span class='nt'>&lt;type&gt;</span>war<span class='nt'>&lt;/type&gt;</span>
-<span class='nt'>&lt;/dependency&gt;</span>
+<div class="highlight"><pre><code class="xml"><span class="c">&lt;!--</span>
+<span class="c">    This one is already in the pom.xml and it&#39;s here in this XML snippet</span>
+<span class="c">    just to show you a good place where to put the next one</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.entando.entando.bundles.pages<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>entando-page-bootstrap-hero<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${entando.version}<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;type&gt;</span>war<span class="nt">&lt;/type&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!--</span>
+<span class="c">    This is the NEW Page Bundle, and the ONLY one you actually are</span>
+<span class="c">    supposed to add to myportal right now</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.entando.entando.bundles.pages<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>entando-page-2columns-left<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${entando.version}<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;type&gt;</span>war<span class="nt">&lt;/type&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div>
-<h3 id="widgets_and_more">Widgets and more</h3>
+
+<h3 id="widgets-and-more">Widgets and more</h3>
 
 <p>Still with me?</p>
 
 <p>Fine, Widget Bundles come as dependencies of Page Bundles so let’s say we don’t need any added Widget nor Misc Bundle.</p>
 
-<h3 id="connecting_the_dots">Connecting the dots</h3>
+<h3 id="connecting-the-dots">Connecting the dots</h3>
 
 <p>Time to finalize the work done so far, and activate the newly added Bundles.</p>
 
 <p>… that is: just start Entando with Jetty!</p>
 
 <p>Remember?</p>
-<div class='highlight'><pre><code class='bash'>mvn clean jetty:run
+
+<div class="highlight"><pre><code class="bash">mvn clean jetty:run
 </code></pre></div>
+
 <p>Well done! From now on, you will proceed using and customizing <code>myportal</code> until it’s exactly how you want it.</p>
 
 <p>Ok, actually it will be exactly how <strong>I</strong> want it. But if everything goes as expected, at the end of this journey you will be able to get your own <code>myportal</code> up and running and to get it how <strong>you</strong> want it <strong>for real</strong>.</p>
 
 <blockquote>
-<p><strong>Pro Tip</strong></p>
+  <p><strong>Pro Tip</strong></p>
 
-<p>I wrote a bunch of useful Bash aliases, which you can find here: <a href="https://gist.github.com/trumbitta/2312873">https://gist.github.com/trumbitta/2312873</a></p>
+  <p>I wrote a bunch of useful Bash aliases, which you can find here:
+<a href="https://gist.github.com/trumbitta/2312873">https://gist.github.com/trumbitta/2312873</a></p>
 
-<p>I, for one, use <code>entando-start</code> all the time, and with tab-completion it feels like heaven.</p>
+  <p>I, for one, use <code>entando-start</code> all the time, and with tab-completion it feels like heaven.</p>
 </blockquote>
 
 <h2 id="structure">Structure</h2>
 
-<h3 id="home_sweet_home_alabama">Home sweet home (Alabama)</h3>
+<h3 id="home-sweet-home-alabama">Home sweet home (Alabama)</h3>
 
 <p>First of all, sign in to enter the Administration Area.</p>
 
-<p>There’s a fairly big green button just front and center in the placeholder page your browser is currently showing.<br />It’s there to ease the very first access to the Administration Area, and soon it will be gone, so use it while there is time!</p>
+<p>There’s a fairly big green button just front and center in the placeholder page your browser is currently showing.<br />
+It’s there to ease the very first access to the Administration Area, and soon it will be gone, so use it while there is time!</p>
 
 <blockquote>
-<p><strong>Pro Tip</strong></p>
+  <p><strong>Pro Tip</strong></p>
 
-<p>The Administration Area can always be reached from<br /><a href="http://localhost:8080/myportal/do/login">http://localhost:8080/myportal/do/login</a><br />and since version 4 it has been renewed, or should I say <em>rebuilt almost from scratch</em> and made responsive and – wherever applicable – <em>mobile-first</em>.</p>
+  <p>The Administration Area can always be reached from<br />
+<a href="http://localhost:8080/myportal/do/login">http://localhost:8080/myportal/do/login</a><br />
+and since version 4 it has been renewed, or should I say <em>rebuilt almost from scratch</em> and made responsive and – wherever applicable – <em>mobile-first</em>.</p>
 
-<p>The following are the default credentials of the hard-coded admin user:</p>
+  <p>The following are the default credentials of the hard-coded admin user:</p>
 </blockquote>
-<div class='highlight'><pre><code class='properties'>    <span class='na'>username</span><span class='o'>:</span> <span class='s'>admin</span>
-    <span class='na'>password</span><span class='o'>:</span> <span class='s'>adminadmin</span>
+
+<div class="highlight"><pre><code class="properties">    <span class="na">username</span><span class="o">:</span> <span class="s">admin</span>
+    <span class="na">password</span><span class="o">:</span> <span class="s">adminadmin</span>
 </code></pre></div>
+
 <blockquote>
-<p><strong>PLEASE PLEASE PLEASE change the password before going out in the big scary wild web</strong>!<br />At any time, you can change the password going in the Administration Area as <code>admin</code>, opening the top right dropdown menu, and choosing <code>My Profile</code>.</p>
+  <p><strong>PLEASE PLEASE PLEASE change the password before going out in the big scary wild web</strong>!<br />
+At any time, you can change the password going in the Administration Area as <code>admin</code>, opening the top right dropdown menu, and choosing <code>My Profile</code>.</p>
 </blockquote>
 
 <p>But wait, there’s one more:</p>
 
 <blockquote>
-<p><strong>Pro Tip</strong></p>
+  <p><strong>Pro Tip</strong></p>
 
-<p>While you are exploring that <code>My Profile</code> thingy, insert your full name (yes, <em>The Boss</em> is a perfectly fine full name, but your real name might be a better choice) and an email address, then save. If that email address is a real one, and you have a <a href="http://gravatar.com">Gravatar</a> linked to it, it will show up in various places making your experience with Entando a little more personal.</p>
+  <p>While you are exploring that <code>My Profile</code> thingy, insert your full name (yes, <em>The Boss</em> is a perfectly fine full name, but your real name might be a better choice) and an email address, then save.
+If that email address is a real one, and you have a <a href="http://gravatar.com">Gravatar</a> linked to it, it will show up in various places making your experience with Entando a little more personal.</p>
+
 </blockquote>
 
-<p>Proceed to the <code>Pages</code> section, select <code>Home</code> from the Page Tree and then <code>Edit</code>.<br />Change the Page Model to one of the two coming from the installed Bundles: <code>Bootstrap - Hero Unit</code>, check <code>Apply default widgets</code>, then <code>Save</code>.</p>
+<p>Proceed to the <code>Pages</code> section, select <code>Home</code> from the Page Tree and then <code>Edit</code>.<br />
+Change the Page Model to one of the two coming from the installed Bundles: <code>Bootstrap - Hero Unit</code>, check <code>Apply default widgets</code>, then <code>Save</code>.</p>
 
 <p>In another browser tab, go back to <code>http://localhost:8080/myportal</code> to see what has changed.</p>
 
 <p>But don’t linger there too much because we are not yet done with the Home.</p>
 
-<h4 id="how_to_publish_a_content">How to publish a Content</h4>
+<h4 id="how-to-publish-a-content">How to publish a Content</h4>
 
 <p>Go back to the Administration Area, <code>Pages</code>, select <code>Home</code> again but this time choose <code>Configure</code>.</p>
 
 <p>See that fairly long panel? It shows all the positions available in the current Page after you applied the new Page Model, and some of them are already filled with the Widgets you placed when you checked <code>Apply default widgets</code>.</p>
 
-<p>One of those is described as <code>Hero Unit</code>. Follow its link.<br />Still with me? It gets easier, just follow these steps:</p>
+<p>One of those is described as <code>Hero Unit</code>. Follow its link.<br />
+Still with me? It gets easier, just follow these steps:</p>
 
 <ul>
-<li>Choose the Widget <code>Contents - Publish a Content</code></li>
-
-<li><code>Confirm</code></li>
-
-<li><code>Choose</code> the Content to publish:<br />You have two sample Contents of type Generic Content, thanks to <code>entando-content-generic</code> being a dependency of <code>entando-page-bootstrap-hero</code> which comes with the archetype you used to create <code>myportal</code>.<br />Long story short, choose <code>Sample - Hero Unit</code> and <code>Confirm</code></li>
-
-<li>Under <code>Publishing settings</code>, as the Content model, choose <code>Hero Unit + Picture</code> and <code>Save</code></li>
+  <li>Choose the Widget <code>Contents - Publish a Content</code></li>
+  <li><code>Confirm</code></li>
+  <li><code>Choose</code> the Content to publish:<br />
+You have two sample Contents of type Generic Content, thanks to <code>entando-content-generic</code> being a dependency of <code>entando-page-bootstrap-hero</code> which comes with the archetype you used to create <code>myportal</code>.<br />
+Long story short, choose <code>Sample - Hero Unit</code> and <code>Confirm</code></li>
+  <li>Under <code>Publishing settings</code>, as the Content model, choose <code>Hero Unit + Picture</code> and <code>Save</code></li>
 </ul>
 
 <p>See? You always deal with Widgets on a Page repeating just three steps:</p>
 
 <ol>
-<li>Choose a Position on the Page</li>
-
-<li>Choose a Widget</li>
-
-<li>Configure the Widget</li>
+  <li>Choose a Position on the Page</li>
+  <li>Choose a Widget</li>
+  <li>Configure the Widget</li>
 </ol>
 
 <p>Some Widgets don’t even need to be configured!</p>
@@ -281,121 +321,110 @@ Y:
 <p>Do it now, then come back for the next step.</p>
 
 <blockquote>
-<p><strong>Pro Tip</strong></p>
+  <p><strong>Pro Tip</strong></p>
 
-<p>From the Administration Area, you can reach the public side in three major ways:</p>
+  <p>From the Administration Area, you can reach the public side in three major ways:</p>
 
-<ol>
-<li>
-<p>The general utility dropdown menu in the header of every section (which at this time should read ”<strong>The Boss</strong> [your avatar]”) has a handy <code>Go to the portal</code> link</p>
-</li>
-
-<li>
-<p>When managing Pages: the <code>Configure</code>, <code>Details</code>, and <code>Edit</code> interfaces have a breadcrumbs recap of where the current Page is in the Page Tree; in that recap, next to every public Page in the path from Home to the current one, there’s a planet-shaped icon which links to the public side of that Page</p>
-</li>
-
-<li>
-<p>Of course, you can always use the address bar of your browser and point it to <code>http://localhost:8080/myportal</code></p>
-</li>
-</ol>
+  <ol>
+    <li>
+      <p>The general utility dropdown menu in the header of every section (which at this time should read “<strong>The Boss</strong> [your avatar]”) has a handy <code>Go to the portal</code> link</p>
+    </li>
+    <li>
+      <p>When managing Pages: the <code>Configure</code>, <code>Details</code>, and <code>Edit</code> interfaces have a breadcrumbs recap of where the current Page is in the Page Tree; in that recap, next to every public Page in the path from Home to the current one, there’s a planet-shaped icon which links to the public side of that Page</p>
+    </li>
+    <li>
+      <p>Of course, you can always use the address bar of your browser and point it to <code>http://localhost:8080/myportal</code></p>
+    </li>
+  </ol>
 </blockquote>
 
-<h4 id="how_to_publish_a_list_of_contents">How to publish a list of Contents</h4>
+<h4 id="how-to-publish-a-list-of-contents">How to publish a list of Contents</h4>
 
 <p>Now that you know how to publish a Content, and you also just learned how to put a Widget on a Page, it’s time to go for the extra mile and use that knowledge to get a fancy <code>Latest News</code> on the homepage of <code>myportal</code>.</p>
 
 <p>I’ll keep it straight and short this time, to help you feel like you really just learned something valuable and are able to accomplish the new mission.</p>
 
 <ol>
-<li>Administration Area –&gt; <code>Pages</code></li>
-
-<li>Home –&gt; <code>Configure</code></li>
-
-<li>Put the Widget <code>News - Latest News</code> in <code>Side 1</code></li>
-
-<li>Beer</li>
+  <li>Administration Area –&gt; <code>Pages</code></li>
+  <li>Home –&gt; <code>Configure</code></li>
+  <li>Put the Widget <code>News - Latest News</code> in <code>Side 1</code></li>
+  <li>Beer</li>
 </ol>
 
-<p>Back to the public side of <code>myportal</code> you’ll find a list of News ordered by descending Date, each with its own <code>View Details</code> button, the whole thing ending with an <code>Archive</code> button.<br />Take mental note of the actual presence of the two buttons, because you are going to use them pretty soon.</p>
+<p>Back to the public side of <code>myportal</code> you’ll find a list of News ordered by descending Date, each with its own <code>View Details</code> button, the whole thing ending with an <code>Archive</code> button.<br />
+Take mental note of the actual presence of the two buttons, because you are going to use them pretty soon.</p>
 
 <p>Supplying proper target Pages for those buttons, it’s the goal of the next section.</p>
 
 <blockquote>
-<p><strong>Pro Tip</strong></p>
+  <p><strong>Pro Tip</strong></p>
 
-<p><code>News - Latest News</code> comes from <code>entando-content-news</code> and it is a <strong>User Widget</strong>: a pre-configured logical Widget created as a saved configuration from a <code>Custom</code>, <code>Plugin</code>, or <code>Stock Widget</code>.</p>
+  <p><code>News - Latest News</code> comes from <code>entando-content-news</code> and it is a <strong>User Widget</strong>: a pre-configured logical Widget created as a saved configuration from a <code>Custom</code>, <code>Plugin</code>, or <code>Stock Widget</code>.</p>
 
-<p>In fact, <code>News - Latest News</code> is created from <code>Contents - Publish a List of Contents</code>.</p>
+  <p>In fact, <code>News - Latest News</code> is created from <code>Contents - Publish a List of Contents</code>.</p>
 
-<p>Thus, if you’re feeling confident enough, you could go on experimenting by putting a <code>Contents - Publish a List of Contents</code> in <code>Side 2</code> and tinkering with its configuration by yourself, this time without going the <code>User Widget</code> route.</p>
+  <p>Thus, if you’re feeling confident enough, you could go on experimenting by putting a <code>Contents - Publish a List of Contents</code> in <code>Side 2</code> and tinkering with its configuration by yourself, this time without going the <code>User Widget</code> route.</p>
 </blockquote>
 
-<h3 id="the_other_pages">The other pages</h3>
-
+<h3 id="the-other-pages">The other pages</h3>
 <p>In this section you’ll create two new Pages, and configure them to properly act as target pages for the <code>View Details</code> and <code>Archive</code> buttons from the previous section.</p>
 
-<h4 id="page_for_onthefly_publishing">Page for on-the-fly publishing</h4>
-
-<p>This mythological animal is one of the smartest guys in Entando as a platform.<br />Every Content Type has one of them, and thanks to it – no matter <strong>where</strong> or <strong>if</strong> a Content is published – there will always be a Page able to show that Content to a visitor of your portal (once the authorization policies are applied).</p>
+<h4 id="page-for-on-the-fly-publishing">Page for on-the-fly publishing</h4>
+<p>This mythological animal is one of the smartest guys in Entando as a platform.<br />
+Every Content Type has one of them, and thanks to it – no matter <strong>where</strong> or <strong>if</strong> a Content is published – there will always be a Page able to show that Content to a visitor of your portal (once the authorization policies are applied).</p>
 
 <ol>
-<li>Administration Area –&gt; <code>Pages</code></li>
-
-<li>Home –&gt; <code>New</code></li>
-
-<li>Code: <code>read_the_news</code><br />Title: <code>Read the News</code> (repeat at will for each configured language)<br />Model: <code>2 Columns - Left</code><br />Check:<br /><code>Apply default Widgets</code><br /><code>Configure for on-the-fly publishing</code><br /><code>Show this page in menus</code><br /><code>SEO: When available, use extra titles</code></li>
-
-<li><code>Save</code></li>
+  <li>Administration Area –&gt; <code>Pages</code></li>
+  <li>Home –&gt; <code>New</code></li>
+  <li>Code: <code>read_the_news</code><br />
+Title: <code>Read the News</code> (repeat at will for each configured language)<br />
+Model: <code>2 Columns - Left</code><br />
+Check:<br />
+<code>Apply default Widgets</code><br />
+<code>Configure for on-the-fly publishing</code><br />
+<code>Show this page in menus</code><br />
+<code>SEO: When available, use extra titles</code>  </li>
+  <li><code>Save</code></li>
 </ol>
 
-<p>If you want, take a look at <code>Configure</code> on the new Page and you’ll see that by checking <code>Configure for on-the-fly publishing</code> you told Entando to put a specially pre-configured <code>Contents - Publish a Content</code> in the Main Position marked by a different “gears” icon and colored in green.<br />And this is exactly how you prepare a Page for the ever honorable job of being a Page for on-the-fly publishing.</p>
+<p>If you want, take a look at <code>Configure</code> on the new Page and you’ll see that by checking <code>Configure for on-the-fly publishing</code> you told Entando to put a specially pre-configured <code>Contents - Publish a Content</code> in the Main Position marked by a different “gears” icon and colored in green.<br />
+And this is exactly how you prepare a Page for the ever honorable job of being a Page for on-the-fly publishing.</p>
 
 <p>Now, instruct the <code>News</code> Content Type on how to use it.</p>
 
 <p>But first, a detour.</p>
 
 <ol>
-<li>Administration Area –&gt; <code>Settings</code> –&gt; <code>General</code></li>
-
-<li>Under <code>Additional features</code>, check <code>Content types</code></li>
-
-<li>Save</li>
+  <li>Administration Area –&gt; <code>Settings</code> –&gt; <code>General</code></li>
+  <li>Under <code>Additional features</code>, check <code>Content types</code></li>
+  <li>Save </li>
 </ol>
 
 <p>Going back on the main road:</p>
 
 <ol>
-<li>Administration Area –&gt; <code>Contents</code> –&gt; <code>Content types</code> –&gt; <code>News</code> –&gt; <code>Edit</code></li>
-
-<li>Make sure that <code>Page for on-the-fly publishing</code> is pointing to <code>Read the News</code> (given it’s the only page properly configured for the job so far, you should find it selected as expected when you arrive there)</li>
-
-<li><code>Save</code></li>
+  <li>Administration Area –&gt; <code>Contents</code> –&gt; <code>Content types</code> –&gt; <code>News</code> –&gt; <code>Edit</code></li>
+  <li>Make sure that <code>Page for on-the-fly publishing</code> is pointing to <code>Read the News</code> (given it’s the only page properly configured for the job so far, you should find it selected as expected when you arrive there)</li>
+  <li><code>Save</code></li>
 </ol>
 
-<p>Hey, done!<br />Go back to the public side of <code>myportal</code>, reload the Home to let Entando update the links for the <code>View Details</code> buttons, and try to use one.</p>
+<p>Hey, done!<br />
+Go back to the public side of <code>myportal</code>, reload the Home to let Entando update the links for the <code>View Details</code> buttons, and try to use one.</p>
 
-<p>You’ll end up in a Page with the following interesting characteristics:</p>
+<p>You’ll end up in a Page with the following interesting characteristics:
+* Page Model <code>2 Columns - Left</code> with proper default Widgets such as <code>Navigation - Breadcrumbs</code> and <code>Navigation - Vertical Menu</code>
+* The Content you wanted to publish on-the-fly, rendered with the <code>Default content model</code>
+* Document <code>&lt;title&gt;</code> (it was <code>Read the News</code>, remember) overridden on-the-fly by the title of the Content, thanks to <code>SEO: When available, use extra titles</code></p>
 
-<ul>
-<li>Page Model <code>2 Columns - Left</code> with proper default Widgets such as <code>Navigation - Breadcrumbs</code> and <code>Navigation - Vertical Menu</code></li>
-
-<li>The Content you wanted to publish on-the-fly, rendered with the <code>Default content model</code></li>
-
-<li>Document <code>&lt;title&gt;</code> (it was <code>Read the News</code>, remember) overridden on-the-fly by the title of the Content, thanks to <code>SEO: When available, use extra titles</code></li>
-</ul>
-
-<h4 id="news_archive">News archive</h4>
-
+<h4 id="news-archive">News archive</h4>
 <p>One button down, one left to go.</p>
 
 <p>Go take a look at the configuration of <code>News - Latest News</code>, in order to get the expected code for the Page you are going to create:</p>
 
 <ol>
-<li>Administration Area –&gt; <code>Widgets</code></li>
-
-<li>Follow the link on <code>News - Latest News</code></li>
-
-<li>Search until you spot <code>pageLink</code> and copy the value (it should be <code>news</code>)</li>
+  <li>Administration Area –&gt; <code>Widgets</code></li>
+  <li>Follow the link on <code>News - Latest News</code></li>
+  <li>Search until you spot <code>pageLink</code> and copy the value (it should be <code>news</code>)</li>
 </ol>
 
 <p>That’s the expected code for the Page to which the <code>Archive</code> button from <code>News - Latest News</code> is supposed to point.</p>
@@ -403,190 +432,188 @@ Y:
 <p>So, now create the Page:</p>
 
 <ol>
-<li>Administration Area –&gt; <code>Pages</code></li>
-
-<li>Home –&gt; <code>New</code></li>
-
-<li>Code: <code>news</code><br />Title: <code>News Archive</code> (repeat at will for each configured language)<br />Model: <code>2 Columns - Left</code><br />Check:<br /><code>Apply default Widgets</code><br /><code>Show this page in menus</code></li>
-
-<li><code>Save</code></li>
+  <li>Administration Area –&gt; <code>Pages</code></li>
+  <li>Home –&gt; <code>New</code></li>
+  <li>Code: <code>news</code><br />
+Title: <code>News Archive</code> (repeat at will for each configured language)<br />
+Model: <code>2 Columns - Left</code><br />
+Check:<br />
+<code>Apply default Widgets</code><br />
+<code>Show this page in menus</code>  </li>
+  <li><code>Save</code></li>
 </ol>
 
-<p>That’s it. Just go back to the public <strong>Home</strong>, reload, and use the <code>Archive</code> button</p>
+<p>That’s it. 
+Just go back to the public <strong>Home</strong>, reload, and use the <code>Archive</code> button… </p>
 
 <p><em>Bummer!</em> The Page is empty!</p>
 
 <p>Fret not, my dear, for you have to go and configure your own luck!</p>
 
 <ol>
-<li>Administration Area –&gt; <code>Pages</code></li>
-
-<li>Home –&gt; News Archive –&gt; <code>Configure</code></li>
-
-<li>Put the Widget <code>News - Archive</code> in <code>Content 1</code> (because it is often a very good idea to save <code>Top Story</code> for a possible future introductory Content)</li>
-
-<li><code>Confirm</code></li>
+  <li>Administration Area –&gt; <code>Pages</code></li>
+  <li>Home –&gt; News Archive –&gt; <code>Configure</code></li>
+  <li>Put the Widget <code>News - Archive</code> in <code>Content 1</code> (because it is often a very good idea to save <code>Top Story</code> for a possible future introductory Content)</li>
+  <li><code>Confirm</code></li>
 </ol>
 
 <p>Go back to that ugly empty page, reload &amp; rejoice for its new fulfillment.</p>
 
 <blockquote>
-<p><strong>Pro Tip</strong></p>
+  <p><strong>Pro Tip</strong></p>
 
-<p>Looking lazily at the Breadcrumbs, you may have noticed that <code>Read the News</code> and <code>News Archive</code> are sister Pages living in the same level of the Page Tree.<br />You may also have started wondering if having <code>Home</code> / <code>News Archive</code> / <code>Read the News</code> wouldn’t have been a better choice.</p>
+  <p>Looking lazily at the Breadcrumbs, you may have noticed that <code>Read the News</code> and <code>News Archive</code> are sister Pages living in the same level of the Page Tree.<br />
+You may also have started wondering if having <code>Home</code> / <code>News Archive</code> / <code>Read the News</code> wouldn’t have been a better choice.</p>
 
-<p>Well, as it happens, you are right.</p>
+  <p>Well, as it happens, you are right.</p>
 
-<p>It <strong>is</strong> better and much more clean and elegant. Also, it is even better to change the title <code>News Archive</code> to just <code>News</code>, thus ending up with:<br /><code>Home</code> / <code>News</code> / <code>Read the News</code></p>
+  <p>It <strong>is</strong> better and much more clean and elegant. Also, it is even better to change the title <code>News Archive</code> to just <code>News</code>, thus ending up with:<br />
+<code>Home</code> / <code>News</code> / <code>Read the News</code></p>
 
-<p>So - if you’re feeling brave - it’s now up to you as an exercise to delete those two sister Pages (check the Page Tree for the <code>Delete</code> option on a Page) and re-do the steps described in this section applying the proper tiny modifications in order to get that fancier Page Tree layout.</p>
+  <p>So - if you’re feeling brave - it’s now up to you as an exercise to delete those two sister Pages (check the Page Tree for the <code>Delete</code> option on a Page) and re-do the steps described in this section applying the proper tiny modifications in order to get that fancier Page Tree layout.</p>
 </blockquote>
 
-<h3 id="taking_care_of_the_contents">Taking care of the Contents</h3>
+<h3 id="taking-care-of-the-contents">Taking care of the Contents</h3>
 
 <p>In the previous section you learned how to take care of a Content Type (News): you created, configured, and set a Page for on-the-fly publishing.</p>
 
-<p>Cool. Now go and do it all also for the Generic Content.<br />No need to hurry, take your time.<br />You’ll find me here when you come back.</p>
+<p>Cool. Now go and do it all also for the Generic Content.<br />
+No need to hurry, take your time.<br />
+You’ll find me here when you come back.</p>
 
 <p>Seriously :) this is not optional. Laters.</p>
 
-<h4 id="wysiwygiyai_what_you_see_is_what_you_get_if_you_activate_it">WYSIWYG,IYAI (What You See Is What You Get, If You Activate It)</h4>
+<h4 id="wysiwygiyai-what-you-see-is-what-you-get-if-you-activate-it">WYSIWYG,IYAI (What You See Is What You Get, If You Activate It)</h4>
+<p>Entando has always cared about Web Accessibility.<br />
+This is why we chose not to activate the great <a href="http://ckeditor.com/">CKEditor</a> by default.</p>
 
-<p>Entando has always cared about Web Accessibility.<br />This is why we chose not to activate the great <a href="http://ckeditor.com/">CKEditor</a> by default.</p>
+<p>But it is just a few clicks away. Go ahead and activated it now:<br />
+* Administration Area –&gt; <code>Settings</code> –&gt; <code>General</code>
+* <code>Miscellaneous</code> –&gt; <code>Choose the Hypertext Editor:</code> –&gt; <code>CKEditor</code>
+* <code>Save</code></p>
 
-<p>But it is just a few clicks away. Go ahead and activated it now:</p>
-
-<ul>
-<li>Administration Area –&gt; <code>Settings</code> –&gt; <code>General</code></li>
-
-<li><code>Miscellaneous</code> –&gt; <code>Choose the Hypertext Editor:</code> –&gt; <code>CKEditor</code></li>
-
-<li><code>Save</code></li>
-</ul>
-
-<h4 id="strippers_gonna_strip">Strippers gonna strip</h4>
-
-<p>As you may have noticed wandering through the public side of <code>myportal</code>, when you are logged in and a Content is directly or on-the-fly published via <code>Contents - Publish a Content</code>, a nice purple <code>Edit</code> button appears on the top left of the Content.<br />Using it, will gracefully land you in Administration Area –&gt; <code>Contents</code> –&gt; <code>Edit</code>, where you can – wait for it – edit that Content.</p>
+<h4 id="strippers-gonna-strip">Strippers gonna strip</h4>
+<p>As you may have noticed wandering through the public side of <code>myportal</code>, when you are logged in and a Content is directly or on-the-fly published via <code>Contents - Publish a Content</code>, a nice purple <code>Edit</code> button appears on the top left of the Content.<br />
+Using it, will gracefully land you in Administration Area –&gt; <code>Contents</code> –&gt; <code>Edit</code>, where you can – wait for it – edit that Content.</p>
 
 <blockquote>
-<p><strong>Pro Tip</strong></p>
+  <p><strong>Pro Tip</strong></p>
 
-<p>That happens because you are in as <code>admin</code>, also known as <strong>The Almighty Superuser</strong>. In real world scenarios, it’s not unusual to have some <code>Editor</code> role assigned to users who can only access the Administration Area and edit Contents.</p>
+  <p>That happens because you are in as <code>admin</code>, also known as <strong>The Almighty Superuser</strong>.
+In real world scenarios, it’s not unusual to have some <code>Editor</code> role assigned to users who can only access the Administration Area and edit Contents.</p>
 
-<p>Check Administration Area –&gt; <code>Settings</code> –&gt; <code>Users</code> and <code>User Roles</code> and experiment for a while, if you want.</p>
+  <p>Check Administration Area –&gt; <code>Settings</code> –&gt; <code>Users</code> and <code>User Roles</code> and experiment for a while, if you want.</p>
 </blockquote>
 
-<p>Now to the real job.<br />We all know those News have way too long texts when they’re grouped in lists, right?</p>
+<p>Now to the real job.<br />
+We all know those News have way too long texts when they’re grouped in lists, right?</p>
 
-<p>That’s because their <code>Abstract</code> is too long.<br />Go on, edit some of the sample News and strip down their <code>Abstract</code> until you are fine with their length.<br />You’ll find the button for saving your modifications on the bottom of the edit interface; it’s the one labeled as <code>Save and approve</code>.<br />While you are there, it’s not a bad idea to also try what the other buttons do.</p>
+<p>That’s because their <code>Abstract</code> is too long.<br />
+Go on, edit some of the sample News and strip down their <code>Abstract</code> until you are fine with their length.<br />
+You’ll find the button for saving your modifications on the bottom of the edit interface; it’s the one labeled as <code>Save and approve</code>.<br />
+While you are there, it’s not a bad idea to also try what the other buttons do.</p>
 
 <p>When you are done, you will have a much nicer <code>News - Latest News</code> and <code>News Archive</code>.</p>
 
 <h3 id="searching">Searching</h3>
-
-<p>One my favorite features in Entando is the embedded Search Engine.<br />Now that you got the basics, putting it up and running is a matter of three simple steps:</p>
+<p>One my favorite features in Entando is the embedded Search Engine.<br />
+Now that you got the basics, putting it up and running is a matter of three simple steps:</p>
 
 <ol>
-<li>Place a <code>Search Form</code> in a suitable position (and this is already done by the Page Bundles in use, so nothing to do for you)</li>
-
-<li>Create a new Page with code <code>search_result</code> and put a <code>Search - Search Result</code> in the Main Position (remember? different “gears” icon and colored in green…)<br />Also remember to always choose one of the Page Models coming from the Page Bundles: <code>Bootstrap - Hero Unit</code> or <code>2 Columns - Left</code></li>
-
-<li>Initialize the search index:<br />Administration Area –&gt; <code>Settings</code> –&gt; <code>Reload the content indexes</code> –&gt; <code>Reload contents</code> &amp; <code>Reload indexes</code></li>
+  <li>Place a <code>Search Form</code> in a suitable position (and this is already done by the Page Bundles in use, so nothing to do for you)</li>
+  <li>Create a new Page with code <code>search_result</code> and put a <code>Search - Search Result</code> in the Main Position (remember? different “gears” icon and colored in green…)<br />
+Also remember to always choose one of the Page Models coming from the Page Bundles: <code>Bootstrap - Hero Unit</code> or <code>2 Columns - Left</code></li>
+  <li>Initialize the search index:<br />
+Administration Area –&gt; <code>Settings</code> –&gt; <code>Reload the content indexes</code> –&gt; <code>Reload contents</code> &amp; <code>Reload indexes</code></li>
 </ol>
 
-<p>Go back to the Homepage and try a search.<br />If you didn’t edit the sample Contents that much, <code>news</code> could be a good test word.</p>
+<p>Go back to the Homepage and try a search.<br />
+If you didn’t edit the sample Contents that much, <code>news</code> could be a good test word.</p>
 
 <blockquote>
-<p><strong>Pro Tip</strong></p>
+  <p><strong>Pro Tip</strong></p>
 
-<p>In a development environment, the search index is stored in <code>/target/temp/indexdir</code>.</p>
+  <p>In a development environment, the search index is stored in <code>/target/temp/indexdir</code>.</p>
 
-<p>Thus, whenever your run <code>mvn clean</code>, the <code>indexdir</code> is gone and you’ll have to rebuild the index.</p>
+  <p>Thus, whenever your run <code>mvn clean</code>, the <code>indexdir</code> is gone and you’ll have to rebuild the index.</p>
 
-<p>Keeping that in mind, and acting accordingly, will contribute in keeping you away from mental hospitals.</p>
+  <p>Keeping that in mind, and acting accordingly, will contribute in keeping you away from mental hospitals.</p>
 </blockquote>
 
-<h2 id="dressing_up_for_the_party">Dressing up for the party</h2>
-
+<h2 id="dressing-up-for-the-party">Dressing up for the party</h2>
 <p>In this section you’ll learn the basics of overriding some default interfaces and you’ll also leverage the presence of Twitter Bootstrap as a Bundle in <code>myportal</code>, to quickly change the look &amp; feel.</p>
 
-<h3 id="override_at_will">Override at will</h3>
-
+<h3 id="override-at-will">Override at will</h3>
 <p>To override one file of Entando, <a href="http://knowyourmeme.com/photos/157116">one does simply</a> copy it from the sources into <code>myportal</code>.</p>
 
-<p>Say you’d like to customize the Page Model <code>Bootstrap - Hero Unit</code>, currently used for the Homepage, which comes from the Bundle <code>entando-page-bootstrap-hero</code>.<br />There are a bunch of ways to accomplish this. Here’s the easiest one:</p>
+<p>Say you’d like to customize the Page Model <code>Bootstrap - Hero Unit</code>, currently used for the Homepage, which comes from the Bundle <code>entando-page-bootstrap-hero</code>.<br />
+There are a bunch of ways to accomplish this. Here’s the easiest one:</p>
 
 <ol>
-<li>Launch <code>myportal</code> with Jetty</li>
-
-<li>Copy<br /><code>target/tmp/entando-page-bootstrap-hero-4_0_0_war/WEB-INF/aps/jsp/models/entando-page-bootstrap-hero.jsp</code><br />into<br /><code>src/main/webapp/WEB-INF/aps/jsp/models/entando-page-bootstrap-hero.jsp</code></li>
-
-<li>Stop and relaunch Jetty to make it aware of the new file</li>
-
-<li>Edit the new file at will and you will see the changes as expected</li>
+  <li>Launch <code>myportal</code> with Jetty</li>
+  <li>Copy<br />
+<code>target/tmp/entando-page-bootstrap-hero-4_0_0_war/WEB-INF/aps/jsp/models/entando-page-bootstrap-hero.jsp</code><br />
+into<br />
+<code>src/main/webapp/WEB-INF/aps/jsp/models/entando-page-bootstrap-hero.jsp</code></li>
+  <li>Stop and relaunch Jetty to make it aware of the new file</li>
+  <li>Edit the new file at will and you will see the changes as expected</li>
 </ol>
 
 <p>Do it now, because in the next section you’ll be customizing that very file.</p>
 
-<h3 id="pimp_my_portal">Pimp my portal</h3>
-
+<h3 id="pimp-my-portal">Pimp my portal</h3>
 <p><a href="http://knowyourmeme.com/photos/176526-xzibit-yo-dawg">Yo Dawg, I herd you like Bootstrap in your portal, so I put a portal in your Bootstrap so you can swatch it while you swatch it.</a></p>
 
-<p>Enter the amazing <a href="http://bootswatch.com/">Bootswatch</a>.<br />Enter the even more amazing <a href="http://www.bootstrapcdn.com/#bootswatch_tab">Bootswatch CDN</a>.</p>
+<p>Enter the amazing <a href="http://bootswatch.com/">Bootswatch</a>.<br />
+Enter the even more amazing <a href="http://www.bootstrapcdn.com/#bootswatch_tab">Bootswatch CDN</a>.</p>
 
-<p>Choose one swatch from the Bootswatch CDN, say <code>Cerulean</code>, and copy its <strong>URL for Bootstrap 2</strong>:<br /><code>//netdna.bootstrapcdn.com/bootswatch/2.3.0/cerulean/bootstrap.min.css</code></p>
+<p>Choose one swatch from the Bootswatch CDN, say <code>Cerulean</code>, and copy its <strong>URL for Bootstrap 2</strong>:<br />
+<code>//netdna.bootstrapcdn.com/bootswatch/2.3.0/cerulean/bootstrap.min.css</code></p>
 
 <p>Now open <code>src/main/webapp/WEB-INF/aps/jsp/models/entando-page-bootstrap-hero.jsp</code> and place a new link to that stylesheet right before the closing <code>&lt;/head&gt;</code>, just like this:</p>
-<div class='highlight'><pre><code class='html'>  <span class='nt'>&lt;jsp:include</span> <span class='na'>page=</span><span class='s'>&quot;inc/lesscss-active/lesscss.jsp&quot;</span> <span class='nt'>/&gt;</span>
-  <span class='nt'>&lt;jsp:include</span> <span class='na'>page=</span><span class='s'>&quot;inc/models-common-utils.jsp&quot;</span> <span class='nt'>/&gt;</span>
 
-  <span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&quot;stylesheet&quot;</span> <span class='na'>type=</span><span class='s'>&quot;text/css&quot;</span> <span class='na'>href=</span><span class='s'>&quot;//netdna.bootstrapcdn.com/bootswatch/2.3.0/cerulean/bootstrap.min.css&quot;</span> <span class='nt'>/&gt;</span>
+<div class="highlight"><pre><code class="html">  <span class="nt">&lt;jsp:include</span> <span class="na">page=</span><span class="s">&quot;inc/lesscss-active/lesscss.jsp&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;jsp:include</span> <span class="na">page=</span><span class="s">&quot;inc/models-common-utils.jsp&quot;</span> <span class="nt">/&gt;</span>
 
-<span class='nt'>&lt;/head&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;//netdna.bootstrapcdn.com/bootswatch/2.3.0/cerulean/bootstrap.min.css&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/head&gt;</span>
 </code></pre></div>
+
 <p>Reload the Homepage and behold the switch from the default Entando Bootstrap theme to Cerulean.</p>
 
 <blockquote>
-<p><strong>Pro Tip</strong></p>
+  <p><strong>Pro Tip</strong></p>
 
-<p>That was the quickest path, and a path also useful for showing you the fundamentals about overriding and customizing.<br />But if you try the responsive features of Bootstrap now, you’ll see that something broke when we added Cerulean.<br />That’s because the best place where to put the new stylesheet is not the file we put it in.<br />Try this instead:</p>
+  <p>That was the quickest path, and a path also useful for showing you the fundamentals about overriding and customizing.<br />
+But if you try the responsive features of Bootstrap now, you’ll see that something broke when we added Cerulean.<br />
+That’s because the best place where to put the new stylesheet is not the file we put it in.<br />
+Try this instead:</p>
 
-<ol>
-<li>Delete the new <code>&lt;link&gt;</code> element from <code>entando-page-bootstrap-hero.jsp</code></li>
-
-<li>Open all the <code>lesscss.jsp</code> files you find in <code>src/main/webapp/WEB-INF/aps/jsp/models/inc/lesscss-active</code> and <code>src/main/webapp/WEB-INF/aps/jsp/models/inc/lesscss-available</code> and subdirectories.<br />There must be a total of 5 files to edit.</li>
-
-<li>Put the new <code>&lt;link&gt;</code> element inside each of those files, just between the <code>&lt;link&gt;</code> for <code>bootstrap</code> and the one for <code>bootstrap-responsive</code> (or just <code>responsive</code>).<br />That will override the look and feel of Bootstrap, while preserving the responsive part.</li>
-</ol>
+  <ol>
+    <li>Delete the new <code>&lt;link&gt;</code> element from <code>entando-page-bootstrap-hero.jsp</code></li>
+    <li>Open all the <code>lesscss.jsp</code> files you find in <code>src/main/webapp/WEB-INF/aps/jsp/models/inc/lesscss-active</code> and <code>src/main/webapp/WEB-INF/aps/jsp/models/inc/lesscss-available</code> and subdirectories.<br />
+There must be a total of 5 files to edit.</li>
+    <li>Put the new <code>&lt;link&gt;</code> element inside each of those files, just between the <code>&lt;link&gt;</code> for <code>bootstrap</code> and the one for <code>bootstrap-responsive</code> (or just <code>responsive</code>).<br />
+That will override the look and feel of Bootstrap, while preserving the responsive part.</li>
+  </ol>
 </blockquote>
 
-<h3 id="embrace_eternity">Embrace Eternity</h3>
+<h3 id="embrace-eternity">Embrace Eternity</h3>
+<p>Here we are, at the end of the journey. You learned how to:<br />
+* Create a new portal
+* Launch it
+* Add some Bundles
+* Publish a Content and a list of Contents
+* Put a Widget on a Page
+* Create and configure a Page
+* Prepare a Page for on-the-fly publishing
+* Activate the embedded search engine
+* Quickly go to edit a Content when on the public side of a portal
+* Override and customize your portal</p>
 
-<p>Here we are, at the end of the journey. You learned how to:</p>
-
-<ul>
-<li>Create a new portal</li>
-
-<li>Launch it</li>
-
-<li>Add some Bundles</li>
-
-<li>Publish a Content and a list of Contents</li>
-
-<li>Put a Widget on a Page</li>
-
-<li>Create and configure a Page</li>
-
-<li>Prepare a Page for on-the-fly publishing</li>
-
-<li>Activate the embedded search engine</li>
-
-<li>Quickly go to edit a Content when on the public side of a portal</li>
-
-<li>Override and customize your portal</li>
-</ul>
-
-<p>That’s quite a lot of basic concepts, for such a quick journey.<br />You’re just beginning to grasp the amazing power that comes with Entando, and the best is yet to come.</p>
+<p>That’s quite a lot of basic concepts, for such a quick journey.<br />
+You’re just beginning to grasp the amazing power that comes with Entando, and the best is yet to come.</p>
 
 <p>I release thee, go!</p>
 
@@ -595,6 +622,7 @@ Y:
 <p><img src="/img/bart.gif" alt="Bart like a boss" /></p>
 
 <p>You deserve it.</p>
+
 
 <p>
   <a href="/">
@@ -611,6 +639,17 @@ Y:
           </p>
         </footer>
       </div>
+
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+        ga('create', 'UA-17222082-8', 'entando.github.io');
+        ga('send', 'pageview');
+      
+      </script>
 
   </body>
   </html>

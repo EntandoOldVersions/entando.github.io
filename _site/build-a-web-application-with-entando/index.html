@@ -34,52 +34,54 @@
   </a>
 </p>
 
-<h1 id="how_to_build_a_web_application_with_entando_and_edo">How to build a web application with Entando (and Edo)</h1>
+<h1 id="how-to-build-a-web-application-with-entando-and-edo">How to build a web application with Entando (and Edo)</h1>
 
 <p>Hello, I’m Stefano Puddu – <a href="https://github.com/stefanopuddu">GitHub/stefanopuddu</a> – and I’m a backend engineer at Entando.</p>
 
 <p>In this guide, I’m going to show you how to:</p>
 
 <ol>
-<li>Create an Entando Plugin for a todo list.</li>
-
-<li>Install the plugin into the local maven repository</li>
-
-<li>Create a website with Entando and add the plugin as a maven dependency</li>
-
-<li>Add some customizations</li>
+  <li>Create an Entando Plugin for a todo list.</li>
+  <li>Install the plugin into the local maven repository</li>
+  <li>Create a website with Entando and add the plugin as a maven dependency</li>
+  <li>Add some customizations</li>
 </ol>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
 <ul>
-<li><em>(Optional)</em> Read <a href="/build-a-website-with-entando"><em>How to build a website with Entando</em></a></li>
-
-<li>Install <a href="http://entando.github.io/edo/">Edo</a> v4.0.0 <a href="https://github.com/entando/edo/archive/v4.0.0.zip"><em>(Direct download)</em></a></li>
-
-<li>Get the sources of <a href="https://github.com/entando/entando-plugins-parent"><code>entando-plugins-parent</code></a> v4.0.0 <a href="https://github.com/entando/entando-plugins-parent/archive/v4.0.0.zip"><em>(Direct download)</em></a></li>
+  <li><em>(Optional)</em> Read <a href="/build-a-website-with-entando"><em>How to build a website with Entando</em></a></li>
+  <li>Install <a href="http://entando.github.io/edo/">Edo</a> v4.0.0 <a href="https://github.com/entando/edo/archive/v4.0.0.zip"><em>(Direct download)</em></a></li>
+  <li>Get the sources of <a href="https://github.com/entando/entando-plugins-parent"><code>entando-plugins-parent</code></a> v4.0.0 <a href="https://github.com/entando/entando-plugins-parent/archive/v4.0.0.zip"><em>(Direct download)</em></a></li>
 </ul>
 
-<h2 id="1_create_an_entando_plugin">1. Create an Entando Plugin</h2>
+<h2 id="create-an-entando-plugin">1. Create an Entando Plugin</h2>
 
 <p>Once you have <code>entando-plugins-parent</code> in a comfortable place – let’s say <code>~/entando/entando-plugins-parent</code> – go there:</p>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd</span> ~/entando/entando-plugins-parent
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/entando/entando-plugins-parent
 </code></pre></div>
+
 <p>And launch:</p>
-<div class='highlight'><pre><code class='bash'>mvn archetype:generate -Dfilter<span class='o'>=</span>entando -DpluginCode<span class='o'>=</span>jptodo -DpluginName<span class='o'>=</span><span class='s2'>&quot;ToDo List&quot;</span>
+
+<div class="highlight"><pre><code class="bash">mvn archetype:generate -Dfilter<span class="o">=</span>entando -DpluginCode<span class="o">=</span>jptodo -DpluginName<span class="o">=</span><span class="s2">&quot;ToDo List&quot;</span>
 </code></pre></div>
+
 <p>Choose whatever the option number for the plugin archetype is:</p>
-<div class='highlight'><pre><code class='bash'>remote -&gt; org.entando.entando:entando-archetype-plugin-generic <span class='o'>(</span>Generic Plugin Archetype <span class='k'>for </span>Entando:  an agile, modern and user-centric open <span class='nb'>source </span>portal-like platform.<span class='o'>)</span>
+
+<div class="highlight"><pre><code class="bash">remote -&gt; org.entando.entando:entando-archetype-plugin-generic <span class="o">(</span>Generic Plugin Archetype <span class="k">for </span>Entando:  an agile, modern and user-centric open <span class="nb">source </span>portal-like platform.<span class="o">)</span>
 </code></pre></div>
+
 <p>We are working on Entando version 4.0.0 so that’s also the version to choose for the plugin archetype.</p>
 
 <p>Configure the remaining options like so:</p>
-<div class='highlight'><pre><code class='bash'>Define value <span class='k'>for </span>property <span class='s1'>&#39;groupId&#39;</span>: : org.entando.entando.plugins
-Define value <span class='k'>for </span>property <span class='s1'>&#39;artifactId&#39;</span>: : entando-plugin-jptodo
-Define value <span class='k'>for </span>property <span class='s1'>&#39;version&#39;</span>:  1.0-SNAPSHOT: :
-Define value <span class='k'>for </span>property <span class='s1'>&#39;package&#39;</span>:  org.entando.entando.plugins: :
-<span class='o'>[</span>INFO<span class='o'>]</span> Using property: <span class='nv'>pluginCode</span> <span class='o'>=</span> entando-plugin-jptodo
-<span class='o'>[</span>INFO<span class='o'>]</span> Using property: <span class='nv'>pluginName</span> <span class='o'>=</span> ToDo List
+
+<div class="highlight"><pre><code class="bash">Define value <span class="k">for </span>property <span class="s1">&#39;groupId&#39;</span>: : org.entando.entando.plugins
+Define value <span class="k">for </span>property <span class="s1">&#39;artifactId&#39;</span>: : entando-plugin-jptodo
+Define value <span class="k">for </span>property <span class="s1">&#39;version&#39;</span>:  1.0-SNAPSHOT: :
+Define value <span class="k">for </span>property <span class="s1">&#39;package&#39;</span>:  org.entando.entando.plugins: :
+<span class="o">[</span>INFO<span class="o">]</span> Using property: <span class="nv">pluginCode</span> <span class="o">=</span> entando-plugin-jptodo
+<span class="o">[</span>INFO<span class="o">]</span> Using property: <span class="nv">pluginName</span> <span class="o">=</span> ToDo List
 Confirm properties configuration:
 groupId: org.entando.entando.plugins
 artifactId: entando-plugin-jptodo
@@ -88,16 +90,19 @@ package: org.entando.entando.plugins
 pluginCode: entando-plugin-jptodo
 pluginName: ToDo List
 </code></pre></div>
+
 <p>This leaves you with an empty, barebones plugin.</p>
 
-<p>The archetype creates a set of files, mainly based on the <code>pluginCode</code>.<br />Some of these files must be present once per plugin and if Edo finds them, it will preserve the existing ones and it will create his own with a special prefix.</p>
+<p>The archetype creates a set of files, mainly based on the <code>pluginCode</code>.<br />
+Some of these files must be present once per plugin and if Edo finds them, it will preserve the existing ones and it will create his own with a special prefix.</p>
 
 <p>If this happens, don’t worry. These files are well documented in the report Edo creates when it’s done with its job, and you can then safely merge them according to your needs.</p>
 
 <p>Since we are starting a plugin from scratch, let’s make things a bit easier to begin with.</p>
 
 <p>Delete some of those files so that Edo can create and configure them with no hassle.</p>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd </span>entando-plugin-jptodo/
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd </span>entando-plugin-jptodo/
 rm src/main/resources/entando-struts-plugin.xml
 rm src/main/resources/component/plugins/jptodo/component.xml
 rm src/main/resources/sql/plugins/jptodo/port_data_production.sql
@@ -105,21 +110,28 @@ rm src/main/resources/sql/plugins/jptodo/serv_data_production.sql
 rm src/test/resources/sql/plugins/jptodo/port_data_test.sql
 rm src/test/resources/sql/plugins/jptodo/serv_data_test.sql
 </code></pre></div>
+
 <p>You should already be in the plugin’s main directory, otherwise:</p>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd</span> ~/entando/entando-plugins-parent/entando-plugin-jptodo
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/entando/entando-plugins-parent/entando-plugin-jptodo
 </code></pre></div>
+
 <p>Now we are ready to create a plugin that handles our simple todo list.</p>
 
 <p>With Edo is as simple as:</p>
-<div class='highlight'><pre><code class='bash'>edo Todo descr:string-r status:int
+
+<div class="highlight"><pre><code class="bash">edo Todo descr:string-r status:int
 </code></pre></div>
-<h2 id="2_install_the_plugin_into_the_local_maven_repository">2. Install the plugin into the local maven repository</h2>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd</span> ~/entando/entando-plugins-parent/entando-plugin-jptodo
+
+<h2 id="install-the-plugin-into-the-local-maven-repository">2. Install the plugin into the local maven repository</h2>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/entando/entando-plugins-parent/entando-plugin-jptodo
 mvn clean install
 </code></pre></div>
-<h2 id="3_create_a_website_with_entando_and_add_the_plugin_as_a_maven_dependency">3. Create a website with Entando and add the plugin as a maven dependency</h2>
 
-<h3 id="create_a_website">Create a website</h3>
+<h2 id="create-a-website-with-entando-and-add-the-plugin-as-a-maven-dependency">3. Create a website with Entando and add the plugin as a maven dependency</h2>
+
+<h3 id="create-a-website">Create a website</h3>
 
 <p>If you don’t know how to do it, this is better explained in <a href="/build-a-website-with-entando"><em>How to build a website with Entando</em></a>.</p>
 
@@ -127,36 +139,42 @@ mvn clean install
 
 <p>I’ll name the website <code>myportal</code>.</p>
 
-<h3 id="add_the_plugin_to_">Add the plugin to <code>myportal</code></h3>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd</span> ~/entando/myportal
+<h3 id="add-the-plugin-to-myportal">Add the plugin to <code>myportal</code></h3>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/entando/myportal
 </code></pre></div>
+
 <p>Then edit the <code>pom.xml</code> file, and add this dependency snippet:</p>
-<div class='highlight'><pre><code class='xml'><span class='nt'>&lt;dependency&gt;</span>
-<span class='nt'>&lt;groupId&gt;</span>org.entando.entando.plugins<span class='nt'>&lt;/groupId&gt;</span>
-<span class='nt'>&lt;artifactId&gt;</span>entando-plugin-jptodo<span class='nt'>&lt;/artifactId&gt;</span>
-<span class='nt'>&lt;version&gt;</span>${entando.version}<span class='nt'>&lt;/version&gt;</span>
-<span class='nt'>&lt;type&gt;</span>war<span class='nt'>&lt;/type&gt;</span>
-<span class='nt'>&lt;/dependency&gt;</span>
+
+<div class="highlight"><pre><code class="xml"><span class="nt">&lt;dependency&gt;</span>
+<span class="nt">&lt;groupId&gt;</span>org.entando.entando.plugins<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>entando-plugin-jptodo<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;version&gt;</span>${entando.version}<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;type&gt;</span>war<span class="nt">&lt;/type&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div>
+
 <p>The <code>&lt;version&gt;${entando.version}&lt;/version&gt;</code> part works just fine because we are using the same version number for everything (4.0.0).</p>
 
 <p>This is actually working as intended because we keep the versions of the various Entando artifacts aligned on purpose.</p>
 
-<h3 id="start_the_website_and_check_out_the_plugin">Start the website and check out the plugin</h3>
+<h3 id="start-the-website-and-check-out-the-plugin">Start the website and check out the plugin</h3>
 
 <p>Fire it up and enter the administration area.</p>
 
 <p>Again, if you don’t know how to do it, this is better explained in <a href="/build-a-website-with-entando"><em>How to build a website with Entando</em></a>.</p>
 
-<p>Once you are in, under <code>Plugins</code> you’ll notice that we have a menu item called <code>Todos</code>.<br />This is the entry point for the backoffice operations, a full ready-to-go CRUD for our todos.</p>
+<p>Once you are in, under <code>Plugins</code> you’ll notice that we have a menu item called <code>Todos</code>.<br />
+This is the entry point for the backoffice operations, a full ready-to-go CRUD for our todos.</p>
 
 <p>Go on, try it. Create some new todos, since we are going to need them for the next steps.</p>
 
-<h3 id="rest_api">REST API</h3>
+<h3 id="rest-api">REST API</h3>
 
 <p>Go to <code>Settings</code> –&gt; <code>General</code> and activate the <code>API</code> feature. Now you can see a new item in the main menu: <code>API</code>.</p>
 
-<p>Go to <code>API</code> –&gt; <code>Resources</code>.<br />In the bottom, you can find the entry point for the REST API, ready to use for our todos.</p>
+<p>Go to <code>API</code> –&gt; <code>Resources</code>.<br />
+In the bottom, you can find the entry point for the REST API, ready to use for our todos.</p>
 
 <p>For example, click to <code>todos</code>, find the <code>Resource URI</code> element and try the link.</p>
 
@@ -167,9 +185,8 @@ mvn clean install
 <p>A widget is meant to to published in a page, so:</p>
 
 <ol>
-<li>Go to <code>Pages</code> and create a new page. Choose a suitable page model, like <code>Bootstrap - Hero Unit</code>.</li>
-
-<li>Configure the page, and add the <code>Todo List and Form</code> widget to a good position, like <code>Top Story</code>.</li>
+  <li>Go to <code>Pages</code> and create a new page. Choose a suitable page model, like <code>Bootstrap - Hero Unit</code>.</li>
+  <li>Configure the page, and add the <code>Todo List and Form</code> widget to a good position, like <code>Top Story</code>.</li>
 </ol>
 
 <p>Then go check out the public side of the website.</p>
@@ -178,7 +195,7 @@ mvn clean install
 
 <p>Also – and I promise this is the last time I’ll bug you with this reminder – if you don’t know how to do it, this is better explained in <a href="/build-a-website-with-entando"><em>How to build a website with Entando</em></a>.</p>
 
-<h2 id="4_add_some_customizations">4. Add some customizations</h2>
+<h2 id="add-some-customizations">4. Add some customizations</h2>
 
 <p>Now that we have our plugin, is time to make it better.</p>
 
@@ -195,12 +212,11 @@ mvn clean install
 <p>We have to protect our widget actions in two ways:</p>
 
 <ol>
-<li>Protecting our action from being executed by <code>guest</code> users</li>
-
-<li>Hiding links and forms when the user is <code>guest</code></li>
+  <li>Protecting our action from being executed by <code>guest</code> users</li>
+  <li>Hiding links and forms when the user is <code>guest</code></li>
 </ol>
 
-<h4 id="1_protecting_our_action_from_being_executed_by__users">1. Protecting our action from being executed by <code>guest</code> users</h4>
+<h4 id="protecting-our-action-from-being-executed-by-guest-users">1. Protecting our action from being executed by <code>guest</code> users</h4>
 
 <p>Go back to the sources of <code>entando-plugin-jptodo</code> and open <code>src/main/java/org/entando/entando/plugins/jptodo/aps/internalservlet/todo/todoFront.xml</code>.</p>
 
@@ -211,75 +227,93 @@ mvn clean install
 <p>All we have to do is change them all, <strong>except for the <code>list</code> and <code>search</code> actions, which we want to remain <code>free</code></strong>.</p>
 
 <p>Change this:</p>
-<div class='highlight'><pre><code class='xml'><span class='nt'>&lt;interceptor-ref</span> <span class='na'>name=</span><span class='s'>&quot;entandoFrontEndFreeStack&quot;</span><span class='nt'>&gt;&lt;/interceptor-ref&gt;</span>
-</code></pre></div>
-<p>Into this:</p>
-<div class='highlight'><pre><code class='xml'><span class='nt'>&lt;interceptor-ref</span> <span class='na'>name=</span><span class='s'>&quot;entandoFrontEndStack&quot;</span><span class='nt'>&gt;</span>
-     <span class='nt'>&lt;param</span> <span class='na'>name=</span><span class='s'>&quot;requestAuth.requiredPermission&quot;</span><span class='nt'>&gt;</span>superuser<span class='nt'>&lt;/param&gt;</span>
-<span class='nt'>&lt;/interceptor-ref&gt;</span>
-</code></pre></div>
-<p>And this:</p>
-<div class='highlight'><pre><code class='xml'><span class='nt'>&lt;interceptor-ref</span> <span class='na'>name=</span><span class='s'>&quot;entandoFrontEndFreeValidationStack&quot;</span><span class='nt'>&gt;&lt;/interceptor-ref&gt;</span>
-</code></pre></div>
-<p>Into this:</p>
-<div class='highlight'><pre><code class='xml'><span class='nt'>&lt;interceptor-ref</span> <span class='na'>name=</span><span class='s'>&quot;entandoFrontEndValidationStack&quot;</span><span class='nt'>&gt;</span>
-    <span class='nt'>&lt;param</span> <span class='na'>name=</span><span class='s'>&quot;requestAuth.requiredPermission&quot;</span><span class='nt'>&gt;</span>superuser<span class='nt'>&lt;/param&gt;</span>
-<span class='nt'>&lt;/interceptor-ref&gt;</span>
-</code></pre></div>
-<h5 id="customizing_the__jsp">Customizing the <code>userNotAllowed</code> JSP</h5>
 
-<p>If any unauthorized user tries to perform an action, Entando will perform a redirect to a result called <code>userNotAllowed</code>.<br />There’s a default JSP for this, but we can still customize it for our namespace.</p>
+<div class="highlight"><pre><code class="xml"><span class="nt">&lt;interceptor-ref</span> <span class="na">name=</span><span class="s">&quot;entandoFrontEndFreeStack&quot;</span><span class="nt">&gt;&lt;/interceptor-ref&gt;</span>
+</code></pre></div>
+
+<p>Into this:</p>
+
+<div class="highlight"><pre><code class="xml"><span class="nt">&lt;interceptor-ref</span> <span class="na">name=</span><span class="s">&quot;entandoFrontEndStack&quot;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;requestAuth.requiredPermission&quot;</span><span class="nt">&gt;</span>superuser<span class="nt">&lt;/param&gt;</span>
+<span class="nt">&lt;/interceptor-ref&gt;</span>
+</code></pre></div>
+
+<p>And this:</p>
+
+<div class="highlight"><pre><code class="xml"><span class="nt">&lt;interceptor-ref</span> <span class="na">name=</span><span class="s">&quot;entandoFrontEndFreeValidationStack&quot;</span><span class="nt">&gt;&lt;/interceptor-ref&gt;</span>
+</code></pre></div>
+
+<p>Into this:</p>
+
+<div class="highlight"><pre><code class="xml"><span class="nt">&lt;interceptor-ref</span> <span class="na">name=</span><span class="s">&quot;entandoFrontEndValidationStack&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;requestAuth.requiredPermission&quot;</span><span class="nt">&gt;</span>superuser<span class="nt">&lt;/param&gt;</span>
+<span class="nt">&lt;/interceptor-ref&gt;</span>
+</code></pre></div>
+
+<h5 id="customizing-the-usernotallowed-jsp">Customizing the <code>userNotAllowed</code> JSP</h5>
+
+<p>If any unauthorized user tries to perform an action, Entando will perform a redirect to a result called <code>userNotAllowed</code>.<br />
+There’s a default JSP for this, but we can still customize it for our namespace.</p>
 
 <p>Edit the <code>&lt;global-results&gt;</code> item at the top of the <code>todoFront.xml</code> file. Add a new <code>&lt;result&gt;</code> with name <code>userNotAllowed</code>.</p>
-<div class='highlight'><pre><code class='xml'><span class='nt'>&lt;global-results&gt;</span>
-    <span class='nt'>&lt;result</span> <span class='na'>name=</span><span class='s'>&quot;failure&quot;</span><span class='nt'>&gt;</span>/WEB-INF/plugins/jptodo/aps/jsp/internalservlet/todo/frontend-todo-error.jsp<span class='nt'>&lt;/result&gt;</span>
-    <span class='nt'>&lt;result</span> <span class='na'>name=</span><span class='s'>&quot;userNotAllowed&quot;</span><span class='nt'>&gt;</span>/WEB-INF/plugins/jptodo/aps/jsp/internalservlet/todo/frontend-todo-notallowed.jsp<span class='nt'>&lt;/result&gt;</span>
-<span class='nt'>&lt;/global-results&gt;</span>
+
+<div class="highlight"><pre><code class="xml"><span class="nt">&lt;global-results&gt;</span>
+    <span class="nt">&lt;result</span> <span class="na">name=</span><span class="s">&quot;failure&quot;</span><span class="nt">&gt;</span>/WEB-INF/plugins/jptodo/aps/jsp/internalservlet/todo/frontend-todo-error.jsp<span class="nt">&lt;/result&gt;</span>
+    <span class="nt">&lt;result</span> <span class="na">name=</span><span class="s">&quot;userNotAllowed&quot;</span><span class="nt">&gt;</span>/WEB-INF/plugins/jptodo/aps/jsp/internalservlet/todo/frontend-todo-notallowed.jsp<span class="nt">&lt;/result&gt;</span>
+<span class="nt">&lt;/global-results&gt;</span>
 </code></pre></div>
+
 <p><em>Pretend you forgot to create the JSP</em> and compile the plugin:</p>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd</span> ~/entando/entando-plugins-parent/entando-plugin-jptodo
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/entando/entando-plugins-parent/entando-plugin-jptodo
 mvn clean install
 </code></pre></div>
+
 <p>Let’s go to our project and start jetty:</p>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd</span> ~/entando-projects/myportal
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/entando-projects/myportal
 mvn clean jetty:run
 </code></pre></div>
+
 <p>On the public side of the website, find the page where you previuosly published the <code>Todo List and Form</code> widget and – as <code>guest</code> (i.e. without first signing in) – try to add a new todo with the <code>New</code> button.</p>
 
 <p>Notice the console messages from Jetty in your terminal or IDE console.</p>
-<div class='highlight'><pre><code class='java'><span class='n'>java</span><span class='o'>.</span><span class='na'>io</span><span class='o'>.</span><span class='na'>FileNotFoundException</span><span class='o'>:</span> <span class='o'>/</span><span class='n'>WEB</span><span class='o'>-</span><span class='n'>INF</span><span class='o'>/</span><span class='n'>plugins</span><span class='o'>/</span><span class='n'>jptodo</span><span class='o'>/</span><span class='n'>aps</span><span class='o'>/</span><span class='n'>jsp</span><span class='o'>/</span><span class='n'>internalservlet</span><span class='o'>/</span><span class='n'>todo</span><span class='o'>/</span><span class='n'>frontend</span><span class='o'>-</span><span class='n'>todo</span><span class='o'>-</span><span class='n'>notallowed</span><span class='o'>.</span><span class='na'>jsp</span>
+
+<div class="highlight"><pre><code class="java"><span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">FileNotFoundException</span><span class="o">:</span> <span class="o">/</span><span class="n">WEB</span><span class="o">-</span><span class="n">INF</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span><span class="n">jptodo</span><span class="o">/</span><span class="n">aps</span><span class="o">/</span><span class="n">jsp</span><span class="o">/</span><span class="n">internalservlet</span><span class="o">/</span><span class="n">todo</span><span class="o">/</span><span class="n">frontend</span><span class="o">-</span><span class="n">todo</span><span class="o">-</span><span class="n">notallowed</span><span class="o">.</span><span class="na">jsp</span>
 </code></pre></div>
+
 <p>Jetty is right, we <em>forgot</em> to create the JSP!</p>
 
 <p>Stop Jetty, and actually create the file <code>~/entando-projects/myportal/src/main/webapp/WEB-INF/plugins/jptodo/aps/jsp/internalservlet/todo/frontend-todo-notallowed.jsp</code> with the following sample content:</p>
-<div class='highlight'><pre><code class='jsp'><span class='k'>&lt;%@</span> <span class='n'>taglib</span> <span class='n'>prefix</span><span class='o'>=</span><span class='s'>&quot;wp&quot;</span> <span class='n'>uri</span><span class='o'>=</span><span class='s'>&quot;/aps-core&quot;</span> <span class='k'>%&gt;</span>
-<span class='nt'>&lt;div</span> <span class='na'>class=</span><span class='s'>&quot;alert alert-error&quot;</span><span class='nt'>&gt;</span>
-    <span class='nt'>&lt;p&gt;</span>
-        <span class='nt'>&lt;wp:i18n</span> <span class='na'>key=</span><span class='s'>&quot;jptodo_NOT_ALLOWED&quot;</span> <span class='nt'>/&gt;</span>
-    <span class='nt'>&lt;/p&gt;</span>
-<span class='nt'>&lt;/div&gt;</span>
+
+<div class="highlight"><pre><code class="jsp"><span class="k">&lt;%@</span> <span class="n">taglib</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;wp&quot;</span> <span class="n">uri</span><span class="o">=</span><span class="s">&quot;/aps-core&quot;</span> <span class="k">%&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;alert alert-error&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+        <span class="nt">&lt;wp:i18n</span> <span class="na">key=</span><span class="s">&quot;jptodo_NOT_ALLOWED&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
 </code></pre></div>
+
 <p>Restart Jetty and try again to add a todo: here’s your <code>jptodo_NOT_ALLOWED</code>.</p>
 
 <ul>
-<li>Sign in as <code>admin</code> (the default password is <code>adminadmin</code>)</li>
-
-<li>Administration area –&gt; <code>Settings</code> –&gt; <code>Labels</code></li>
-
-<li>Create a new label using <code>jptodo_NOT_ALLOWED</code> as the <code>Key</code> and whatever you like best as the values – e.g. <em>“Sorry mate, you can’t add a new todo.”</em></li>
-
-<li>Sign out and try again to add a new todo action as <code>guest</code></li>
+  <li>Sign in as <code>admin</code> (the default password is <code>adminadmin</code>)</li>
+  <li>Administration area –&gt; <code>Settings</code> –&gt; <code>Labels</code></li>
+  <li>Create a new label using <code>jptodo_NOT_ALLOWED</code> as the <code>Key</code> and whatever you like best as the values – e.g. <em>“Sorry mate, you can’t add a new todo.”</em></li>
+  <li>Sign out and try again to add a new todo action as <code>guest</code></li>
 </ul>
 
 <p>And here’s the expected message instead of the label key.</p>
 
-<h4 id="2_hiding_links_and_forms_when_the_user_is_">2. Hiding links and forms when the user is <code>guest</code></h4>
+<h4 id="hiding-links-and-forms-when-the-user-is-guest">2. Hiding links and forms when the user is <code>guest</code></h4>
 
-<p>Now we have to show links and buttons only for authorized users. To discover which JSP is involved, open the <code>src/main/java/org/entando/entando/plugins/jptodo/aps/internalservlet/todo/todoFront.xml</code> file from the plugin sources.</p>
+<p>Now we have to show links and buttons only for authorized users.
+To discover which JSP is involved, open the <code>src/main/java/org/entando/entando/plugins/jptodo/aps/internalservlet/todo/todoFront.xml</code> file from the plugin sources.</p>
 
 <p>Find the <code>list</code> action and the jsp declared as <code>result</code>.</p>
 
-<p>The JSP is <code>/WEB-INF/plugins/jptodo/aps/jsp/internalservlet/todo/frontend-todo-list.jsp</code> and it’ll be under <code>src/main/webapp</code>.<br />Copy it from the plugin sources into the same path inside your project.</p>
+<p>The JSP is <code>/WEB-INF/plugins/jptodo/aps/jsp/internalservlet/todo/frontend-todo-list.jsp</code> and it’ll be under <code>src/main/webapp</code>.<br />
+Copy it from the plugin sources into the same path inside your project.</p>
 
 <p>This time, the folder will happen to be the same as <code>frontend-todo-notallowed.jsp</code>.</p>
 
@@ -288,31 +322,31 @@ mvn clean jetty:run
 <p>Hiding the <code>New</code> button away according to our needs, is very simple.</p>
 
 <p>Just surround the proper html portion with the <code>wp:ifauthorized</code> custom tag:</p>
-<div class='highlight'><pre><code class='jsp'><span class='nt'>&lt;wp:ifauthorized</span> <span class='na'>permission=</span><span class='s'>&quot;superuser&quot;</span><span class='nt'>&gt;</span>
-<span class='nt'>&lt;p&gt;</span>
-  <span class='nt'>&lt;a</span> <span class='na'>href=</span><span class='s'>&quot;&lt;wp:action path=&quot;</span><span class='err'>/ExtStr2/do/FrontEnd/jptodo/Todo/new.action&quot;</span><span class='nt'>&gt;&lt;/wp:action&gt;</span>&quot; title=&quot;<span class='nt'>&lt;wp:i18n</span> <span class='na'>key=</span><span class='s'>&quot;NEW&quot;</span> <span class='nt'>/&gt;</span>&quot; class=&quot;btn btn-info&quot;&gt;
-    <span class='nt'>&lt;span</span> <span class='na'>class=</span><span class='s'>&quot;icon-plus-sign icon-white&quot;</span><span class='nt'>&gt;&lt;/span&gt;</span><span class='ni'>&amp;#32;</span>
-    <span class='nt'>&lt;wp:i18n</span> <span class='na'>key=</span><span class='s'>&quot;NEW&quot;</span> <span class='nt'>/&gt;</span>
-  <span class='nt'>&lt;/a&gt;</span>
-<span class='nt'>&lt;/p&gt;</span>
-<span class='nt'>&lt;/wp:ifauthorized&gt;</span>
+
+<div class="highlight"><pre><code class="jsp"><span class="nt">&lt;wp:ifauthorized</span> <span class="na">permission=</span><span class="s">&quot;superuser&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;p&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&lt;wp:action path=&quot;</span><span class="err">/ExtStr2/do/FrontEnd/jptodo/Todo/new.action&quot;</span><span class="nt">&gt;&lt;/wp:action&gt;</span>&quot; title=&quot;<span class="nt">&lt;wp:i18n</span> <span class="na">key=</span><span class="s">&quot;NEW&quot;</span> <span class="nt">/&gt;</span>&quot; class=&quot;btn btn-info&quot;&gt;
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;icon-plus-sign icon-white&quot;</span><span class="nt">&gt;&lt;/span&gt;</span><span class="ni">&amp;#32;</span>
+    <span class="nt">&lt;wp:i18n</span> <span class="na">key=</span><span class="s">&quot;NEW&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/wp:ifauthorized&gt;</span>
 </code></pre></div>
+
 <p>If you were using Jetty, you’ll now have to stop-and-restart-it because while it’s perfectly fine with hot-deployed <em>modified</em> files, it doesn’t know how to deal with hot-deployed <em>new</em> files.</p>
 
 <p>If you check the page, you’ll now see that the <code>New</code> button is gone. It will be back in place once you sign in as a user with the <code>superuser</code> permission (i.e. <code>admin</code>).</p>
 
-<h3 id="porting_the_customizations_from_the_website_back_to_the_plugin_sources">Porting the customizations from the website back to the plugin sources</h3>
+<h3 id="porting-the-customizations-from-the-website-back-to-the-plugin-sources">Porting the customizations from the website back to the plugin sources</h3>
 
 <p>Once you are happy with the result, you can (well, you <em>should</em>) port it back into the sources of the plugin.</p>
 
 <p>So far, you’ll have to:</p>
 
 <ul>
-<li>Update the <code>frontend-todo-list.jsp</code> file</li>
-
-<li>Add the <code>frontend-todo-notallowed.jsp</code> file</li>
-
-<li>Provide proper installation instructions for the <code>jptodo_NOT_ALLOWED</code> label.</li>
+  <li>Update the <code>frontend-todo-list.jsp</code> file</li>
+  <li>Add the <code>frontend-todo-notallowed.jsp</code> file</li>
+  <li>Provide proper installation instructions for the <code>jptodo_NOT_ALLOWED</code> label.</li>
 </ul>
 
 <p>The first two points are quite straightforward: just update the first file, and add the second one, in the proper path (see above if you forgot).</p>
@@ -322,34 +356,43 @@ mvn clean jetty:run
 <p>In the plugin sources, open the <code>src/main/resources/sql/plugins/jptodo/port_data_production.sql</code> file.</p>
 
 <p>Add a handful of <code>INSERT</code> statements for the <code>jptodo_NOT_ALLOWED</code> label:</p>
-<div class='highlight'><pre><code class='sql'><span class='k'>INSERT</span> <span class='k'>INTO</span> <span class='n'>localstrings</span> <span class='p'>(</span> <span class='n'>keycode</span><span class='p'>,</span> <span class='n'>langcode</span><span class='p'>,</span> <span class='n'>stringvalue</span> <span class='p'>)</span> <span class='k'>VALUES</span> <span class='p'>(</span><span class='s1'>&#39;jptodo_NOT_ALLOWED&#39;</span><span class='p'>,</span> <span class='s1'>&#39;it&#39;</span><span class='p'>,</span> <span class='s1'>&#39;Sorry mate, you can&#39;&#39;t add a new todo&#39;</span><span class='p'>);</span>
-<span class='k'>INSERT</span> <span class='k'>INTO</span> <span class='n'>localstrings</span> <span class='p'>(</span> <span class='n'>keycode</span><span class='p'>,</span> <span class='n'>langcode</span><span class='p'>,</span> <span class='n'>stringvalue</span> <span class='p'>)</span> <span class='k'>VALUES</span> <span class='p'>(</span><span class='s1'>&#39;jptodo_NOT_ALLOWED&#39;</span><span class='p'>,</span> <span class='s1'>&#39;en&#39;</span><span class='p'>,</span> <span class='s1'>&#39;Sorry mate, you can&#39;&#39;t add a new todo&#39;</span><span class='p'>);</span>
+
+<div class="highlight"><pre><code class="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">localstrings</span> <span class="p">(</span> <span class="n">keycode</span><span class="p">,</span> <span class="n">langcode</span><span class="p">,</span> <span class="n">stringvalue</span> <span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;jptodo_NOT_ALLOWED&#39;</span><span class="p">,</span> <span class="s1">&#39;it&#39;</span><span class="p">,</span> <span class="s1">&#39;Sorry mate, you can&#39;&#39;t add a new todo&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">localstrings</span> <span class="p">(</span> <span class="n">keycode</span><span class="p">,</span> <span class="n">langcode</span><span class="p">,</span> <span class="n">stringvalue</span> <span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;jptodo_NOT_ALLOWED&#39;</span><span class="p">,</span> <span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="s1">&#39;Sorry mate, you can&#39;&#39;t add a new todo&#39;</span><span class="p">);</span>
 </code></pre></div>
+
 <p>And you’re done!</p>
 
-<h3 id="final_steps">Final steps</h3>
+<h3 id="final-steps">Final steps</h3>
 
 <p>Now that the plugin sources are up-to-date, clean <code>myportal</code> up by deleting the <em>JSP overlays</em> you put in place while customizing the plugin.</p>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd</span> ~/entando/myportal
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/entando/myportal
 rm src/main/webapp/WEB-INF/plugins/jptodo/aps/jsp/internalservlet/todo/frontend-todo-list.jsp
 rm src/main/webapp/WEB-INF/plugins/jptodo/aps/jsp/internalservlet/todo/frontend-todo-notallowed.jsp
 </code></pre></div>
+
 <p>Also update the plugin in your local maven repository, just in case:</p>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd</span> ~/entando/entando-plugins-parent/entando-plugin-jptodo
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/entando/entando-plugins-parent/entando-plugin-jptodo
 mvn clean install
 </code></pre></div>
-<h4 id="some_notes">Some notes</h4>
+
+<h4 id="some-notes">Some notes</h4>
 
 <p>Sometimes you could be in the position of choosing to start a plugin directly inside an Entando website / portal / web application.</p>
 
 <p>In such a scenario, just run Edo from the root directory of the website without going the <em>new-plugin-from-archetype</em> route:</p>
-<div class='highlight'><pre><code class='bash'><span class='nb'>cd</span> ~/entando/myportal
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/entando/myportal
 edo Todo descr:string-r status:int
 mvn clean jetty:run
 </code></pre></div>
+
 <p>That’s all!</p>
 
 <p>Remember: using Edo is a great way of starting a project with Entando. But to discover how simple, powerful and scalable Entando is, you’ll still need to fire up your favorite IDE and write your own code.</p>
+
 
 <p>
   <a href="/">
@@ -366,6 +409,17 @@ mvn clean jetty:run
           </p>
         </footer>
       </div>
+
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+        ga('create', 'UA-17222082-8', 'entando.github.io');
+        ga('send', 'pageview');
+      
+      </script>
 
   </body>
   </html>
