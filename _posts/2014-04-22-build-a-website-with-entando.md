@@ -15,7 +15,7 @@ I serve as R&D Director at Entando, and you can find me on [GitHub](http://githu
 
 So you heard about Entando and thought:
 
-> Finally an enterprise portal platform which is at the same time powerful, extensible, and not \[Liferay|Oracle Portal|WebSphere\]-difficult to use!
+> Finally an enterprise portal platform which is at the same time powerful, extensible, and not {Liferay|Oracle Portal|WebSphere}-difficult to use!
 
 But then you looked left, and then you looked right, and then you looked around and thought:
 
