@@ -20,19 +20,49 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.1/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
-    </head>
+
+  <style type="text/css">
+
+    body { padding-top: 0.5em; }
+
+  </style>
+
+</head>
 
     <body>
 
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-          <p>
-  <a href="/">
-    <span class="fa fa-arrow-circle-o-left fa-fw"></span>&#32;
-    Back to entando.github.io
-  </a>
-</p>
+          <nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="http://www.entando.com/portal/en/start_here.page" title="Back to Entando.com / Start Here">
+            entando.com
+          </a>
+        </li>
+        <li>
+          <a href="/" title="Back to the quick summary of Entando resources on GitHub">
+            entando.github.io
+          </a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 <h1 id="build-a-website-with-entando">Build a website with Entando</h1>
 
@@ -78,13 +108,11 @@ There’s nothing really difficult on the road ahead.</p>
 
 <p>Here we go. Find a comfortable spot in the filesystem, like:</p>
 
-<div class="highlight"><pre><code class="bash">mkdir ~/entando/ <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/entando
-</code></pre></div>
+<div class="highlight"><pre><code class="bash">mkdir ~/entando/ <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/entando</code></pre></div>
 
 <p>And create your new, barebones, portal bundled with the awesome <a href="http://getbootstrap.com">Bootstrap</a>, version 2:</p>
 
-<div class="highlight"><pre><code class="bash">mvn archetype:generate -Dfilter<span class="o">=</span>entando
-</code></pre></div>
+<div class="highlight"><pre><code class="bash">mvn archetype:generate -Dfilter<span class="o">=</span>entando</code></pre></div>
 
 <p>If this is the first time you use Maven, <em>it’s important that you stop reading right now and go read an <a href="http://maven.apache.org/guides/getting-started/index.html">intro to Maven</a></em>.</p>
 
@@ -94,8 +122,7 @@ There’s nothing really difficult on the road ahead.</p>
 1: remote -&gt; org.entando.entando:entando-archetype-portal-bootstrap <span class="o">(</span>Twitter Bootstrap Portal Archetype <span class="k">for </span>Entando: an agile, modern and user-centric open <span class="nb">source </span>portal-like platform.<span class="o">)</span>
 2: remote -&gt; org.entando.entando:entando-archetype-plugin-generic <span class="o">(</span>Generic Plugin Archetype <span class="k">for </span>Entando: an agile, modern and user-centric open <span class="nb">source </span>Portal platform.<span class="o">)</span>
 3: remote -&gt; org.entando.entando:entando-archetype-portal-generic <span class="o">(</span>Generic Portal Archetype <span class="k">for </span>Entando: an agile, modern and user-centric open <span class="nb">source </span>portal-like platform.<span class="o">)</span>
-Choose a number or apply filter <span class="o">(</span>format: <span class="o">[</span>groupId:<span class="o">]</span>artifactId, <span class="k">case </span>sensitive contains<span class="o">)</span>: :
-</code></pre></div>
+Choose a number or apply filter <span class="o">(</span>format: <span class="o">[</span>groupId:<span class="o">]</span>artifactId, <span class="k">case </span>sensitive contains<span class="o">)</span>: :</code></pre></div>
 
 <p>Choose 1 or <strong>whatever number points to org.entando.entando:entando-archetype-portal-bootstrap</strong>.<br />
 Then choose version 4.0.0, and go on like so:</p>
@@ -109,13 +136,11 @@ groupId: com.mydomain
 artifactId: myportal
 version: 1.0-SNAPSHOT
 package: com.mydomain
-Y:
-</code></pre></div>
+Y:</code></pre></div>
 
 <p>Now enter the root directory of <code>myportal</code>:</p>
 
-<div class="highlight"><pre><code class="bash"><span class="nb">cd </span>myportal
-</code></pre></div>
+<div class="highlight"><pre><code class="bash"><span class="nb">cd </span>myportal</code></pre></div>
 
 <p>Cool. Let’s see if it worked.</p>
 
@@ -123,24 +148,21 @@ Y:
   <li>Start Entando:  </li>
 </ol>
 
-<div class="highlight"><pre><code class="bash">mvn clean jetty:run
-</code></pre></div>
+<div class="highlight"><pre><code class="bash">mvn clean jetty:run</code></pre></div>
 
 <ol>
   <li>Lean back and relax until you see these ending log lines by Jetty:  </li>
 </ol>
 
 <div class="highlight"><pre><code class="bash"><span class="o">[</span>INFO<span class="o">]</span> Started Jetty Server
-<span class="o">[</span>INFO<span class="o">]</span> Starting scanner at interval of 5 seconds.
-</code></pre></div>
+<span class="o">[</span>INFO<span class="o">]</span> Starting scanner at interval of 5 seconds.</code></pre></div>
 
 <p>Those two lines mean that Entando is up and running and Jetty is now ready to accept connections.<br />
 That is, point your web browser to <a href="http://localhost:8080/myportal">http://localhost:8080/myportal</a> and behold the mostly empty placeholder page, stating that <strong>It Worked!</strong>.</p>
 
 <p>So we are now ready to move on to the next checkpoint; but first be sure to stop Jetty:</p>
 
-<div class="highlight"><pre><code class="bash">CTRL C
-</code></pre></div>
+<div class="highlight"><pre><code class="bash">CTRL C</code></pre></div>
 
 <h2 id="decide-and-compose">Decide and compose</h2>
 
@@ -171,8 +193,7 @@ That is, point your web browser to <a href="http://localhost:8080/myportal">http
   <span class="nt">&lt;artifactId&gt;</span>entando-content-news<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>${entando.version}<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;type&gt;</span>war<span class="nt">&lt;/type&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></div>
 
 <h3 id="pages">Pages</h3>
 
@@ -202,8 +223,7 @@ That is, point your web browser to <a href="http://localhost:8080/myportal">http
   <span class="nt">&lt;artifactId&gt;</span>entando-page-2columns-left<span class="nt">&lt;/artifactId&gt;</span>
   <span class="nt">&lt;version&gt;</span>${entando.version}<span class="nt">&lt;/version&gt;</span>
   <span class="nt">&lt;type&gt;</span>war<span class="nt">&lt;/type&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></div>
 
 <h3 id="widgets-and-more">Widgets and more</h3>
 
@@ -219,8 +239,7 @@ That is, point your web browser to <a href="http://localhost:8080/myportal">http
 
 <p>Remember?</p>
 
-<div class="highlight"><pre><code class="bash">mvn clean jetty:run
-</code></pre></div>
+<div class="highlight"><pre><code class="bash">mvn clean jetty:run</code></pre></div>
 
 <p>Well done! From now on, you will proceed using and customizing <code>myportal</code> until it’s exactly how you want it.</p>
 
@@ -254,9 +273,8 @@ and since version 4 it has been renewed, or should I say <em>rebuilt almost from
   <p>The following are the default credentials of the hard-coded admin user:</p>
 </blockquote>
 
-<div class="highlight"><pre><code class="properties">    <span class="na">username</span><span class="o">:</span> <span class="s">admin</span>
-    <span class="na">password</span><span class="o">:</span> <span class="s">adminadmin</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="properties"><span class="na">username</span><span class="o">:</span> <span class="s">admin</span>
+    <span class="na">password</span><span class="o">:</span> <span class="s">adminadmin</span></code></pre></div>
 
 <blockquote>
   <p><strong>PLEASE PLEASE PLEASE change the password before going out in the big scary wild web</strong>!<br />
@@ -564,13 +582,12 @@ Enter the even more amazing <a href="http://www.bootstrapcdn.com/#bootswatch_tab
 
 <p>Now open <code>src/main/webapp/WEB-INF/aps/jsp/models/entando-page-bootstrap-hero.jsp</code> and place a new link to that stylesheet right before the closing <code>&lt;/head&gt;</code>, just like this:</p>
 
-<div class="highlight"><pre><code class="html">  <span class="nt">&lt;jsp:include</span> <span class="na">page=</span><span class="s">&quot;inc/lesscss-active/lesscss.jsp&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;jsp:include</span> <span class="na">page=</span><span class="s">&quot;inc/lesscss-active/lesscss.jsp&quot;</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;jsp:include</span> <span class="na">page=</span><span class="s">&quot;inc/models-common-utils.jsp&quot;</span> <span class="nt">/&gt;</span>
 
   <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;//netdna.bootstrapcdn.com/bootswatch/2.3.0/cerulean/bootstrap.min.css&quot;</span> <span class="nt">/&gt;</span>
 
-<span class="nt">&lt;/head&gt;</span>
-</code></pre></div>
+<span class="nt">&lt;/head&gt;</span></code></pre></div>
 
 <p>Reload the Homepage and behold the switch from the default Entando Bootstrap theme to Cerulean.</p>
 
@@ -616,12 +633,6 @@ You’re just beginning to grasp the amazing power that comes with Entando, and 
 <p>You deserve it.</p>
 
 
-<p>
-  <a href="/">
-    <span class="fa fa-arrow-circle-o-left fa-fw"></span>&#32;
-    Back to entando.github.io
-  </a>
-</p>
           </div>
         </div>
 
@@ -642,6 +653,9 @@ You’re just beginning to grasp the amazing power that comes with Entando, and 
         ga('send', 'pageview');
       
       </script>
+
+      <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
   </body>
   </html>
